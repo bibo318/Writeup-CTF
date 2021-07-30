@@ -14,7 +14,7 @@ $ sudo ./pymap.py -t 10.200.11.232 -A
  ::          ::    :::     ::   ::   :::   ::       
  :           :      :      :     :   : :   :        
 Author: kuroHat
-Github: https://github.com/gu2rks
+Github: https://github.com/bibo318
 PORT    STATE SERVICE VERSION
 143/tcp open  imap    Dovecot imapd (Ubuntu)
 |_imap-capabilities: LOGIN-REFERRALS SASL-IR LOGINDISABLEDA0001 more have post-login ENABLE IDLE OK LITERAL+ capabilities listed Pre-login STARTTLS ID IMAP4rev1

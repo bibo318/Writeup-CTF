@@ -1,4 +1,4 @@
-# Day File Confusion, create by gu2rks
+# Day File Confusion, create by bibo318
 import sys
 import os
 import zipfile

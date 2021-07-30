@@ -17,7 +17,7 @@ bibo318@parrot:~/script$ sudo ./pymap.py -t jerry.htb -A -s vuln
  ::          ::    :::     ::   ::   :::   ::       
  :           :      :      :     :   : :   :        
 Author: kuroHat
-Github: https://github.com/gu2rks
+Github: https://github.com/bibo318
 
 
 port scanning...

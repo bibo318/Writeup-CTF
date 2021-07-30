@@ -1,5 +1,5 @@
 # recon.
-Like always, start with nmap. I use my own tool to automate nmap scan, check it out [pymap](https://github.com/gu2rks/pymap)
+Like always, start with nmap. I use my own tool to automate nmap scan, check it out [pymap](https://github.com/bibo318/pymap)
 ```console
 $ python3 pymap.py -t $IP --all
 ```

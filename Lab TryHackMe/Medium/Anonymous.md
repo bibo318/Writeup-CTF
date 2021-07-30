@@ -1,5 +1,5 @@
 # Recon
-Like always, start with nmap. I use my own tool to automate nmap scan, check it out [pymap](https://github.com/gu2rks/pymap)
+Like always, start with nmap. I use my own tool to automate nmap scan, check it out [pymap](https://github.com/bibo318/pymap)
 ```console
 $ python3 pymap.py -t $IP
 ```
@@ -26,8 +26,8 @@ drwxr-xr-x    3 65534    65534        4096 May 13 19:49 ..
 now let use `pymap.py` again to enumerate for smb
 ```console
 bibo318@parrot:~/script$ sudo python3 pymap.py -t $IP -smb
-created by gu2rks/kurohat 
-find me here https://github.com/gu2rks
+created by bibo318/kurohat 
+find me here https://github.com/bibo318
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-08-08 10:25 EDT
 Nmap scan report for 10.10.155.248

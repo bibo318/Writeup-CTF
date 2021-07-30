@@ -303,7 +303,7 @@ Things to note about this challenge:
 Read [here](https://docs.google.com/document/d/1FyAnxlQpzh0Cy17cKLsUZYCYqUA3eHu2hm0snilaPL0/edit)
 
 ```python
-# made by gu2rks@github
+# made by bibo318@github
 import requests
 r = requests.get("http://10.10.169.100:3000")
 r = r.json()

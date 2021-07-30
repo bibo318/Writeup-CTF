@@ -3,8 +3,8 @@
 ```console
 bibo318@parrot:~$ sudo python3 pymap.py -t 10.10.238.21
 [sudo] password for kali: 
-created by gu2rks/kurohat 
-find me here https://github.com/gu2rks
+created by bibo318/kurohat 
+find me here https://github.com/bibo318
 
 port scanning...
 22/tcp open  ssh

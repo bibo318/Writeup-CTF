@@ -20,7 +20,7 @@ bibo318@parrot:/opt$ sudo ./pymap.py -t 10.200.11.0/24 -pS
  ::          ::    :::     ::   ::   :::   ::       
  :           :      :      :     :   : :   :        
 Author: kuroHat
-Github: https://github.com/gu2rks
+Github: https://github.com/bibo318
 
 sweeping on network: 10.200.11.0/24 
 Looking for alive hosts...

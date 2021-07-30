@@ -2,8 +2,8 @@
 
 ```
 bibo318@parrot:~/script$ sudo python3 pymap.py -t $IP
-created by gu2rks/kurohat 
-find me here https://github.com/gu2rks
+created by bibo318/kurohat 
+find me here https://github.com/bibo318
 
 port scanning...
 135/tcp   open  msrpc

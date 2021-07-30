@@ -36,13 +36,13 @@
 ```
 - junks
 var users = {"fc18e5f4aa09bbbb7fdedf5e277dda00":"WWBuddy"};
-gu2rks var uid = "74a455114e02c520d82c0f4d3dfa1d06";
+bibo318 var uid = "74a455114e02c520d82c0f4d3dfa1d06";
 kurohat var uid = acd13a68b6ec2ce0b11137ff9da8908c
 
 - /admin/access.log
 192.168.0.139 2020-07-24 22:54:34 WWBuddy fc18e5f4aa09bbbb7fdedf5e277dda00
 192.168.0.139 2020-07-24 22:56:09 Roberto b5ea6181006480438019e76f8100249e
-10.11.14.220 2020-09-04 17:26:40 gu2rks 74a455114e02c520d82c0f4d3dfa1d06 
+10.11.14.220 2020-09-04 17:26:40 bibo318 74a455114e02c520d82c0f4d3dfa1d06 
 
 - /api/messages/?uid=<useridhere>: to user's profile page:
 ```html

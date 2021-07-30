@@ -31,7 +31,7 @@ Now save and exit then restart your terminator. enjoy
 
 # pymap
 ```console
-bibo318@parrot:/opt$ sudo wget https://raw.githubusercontent.com/gu2rks/pymap/master/pymap.py
+bibo318@parrot:/opt$ sudo wget https://raw.githubusercontent.com/bibo318/pymap/master/pymap.py
 bibo318@parrot:/opt$ sudo chmod +x pymap.py 
 ```
 # impacket
