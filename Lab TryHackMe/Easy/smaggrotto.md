@@ -102,7 +102,7 @@ You can pick, But just know that there is a draw back to the 2nd way to gain acc
 
 Now ssh to victim server with ssh key!
 ```
-kali@kali:~$ ssh jake@smagrotto.thm -i .ssh/id_rsa
+bibo318@parrot:~$ ssh jake@smagrotto.thm -i .ssh/id_rsa
 The authenticity of host 'smagrotto.thm (10.10.243.223)' can't be established.
 ECDSA key fingerprint is SHA256:MMv7NKmeLS/aEUSOLy0NbyGrLCEKErHJTp1cIvsxnpA.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes

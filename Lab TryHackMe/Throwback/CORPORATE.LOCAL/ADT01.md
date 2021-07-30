@@ -211,8 +211,8 @@ so our plan is add `10.200.11.232 mail.corporate.local` to our `/etc/host`. Afte
 ```console
 └─$ sudo -i                                         
 [sudo] password for kali: 
-root@kali:~# echo "10.200.11.232 mail.corporate.local" >> /etc/hosts
-root@kali:~# echo "10.200.11.232 www.breachgtfo.local" >> /etc/hosts
+bibo318@kali:~# echo "10.200.11.232 mail.corporate.local" >> /etc/hosts
+bibo318@kali:~# echo "10.200.11.232 www.breachgtfo.local" >> /etc/hosts
 ```
 at this point, you should be able to access both sites.
 
@@ -223,7 +223,7 @@ $ python3 namely.py -nf ~/THM/throwback/names.txt -d TBHSecurity.com -t  XXX-\${
 where XXX is the departments.
 
 ```console
-kali@kali:~/THM/throwback$ cat emails.txt 
+bibo318@parrot:~/THM/throwback$ cat emails.txt 
 HRE-JStewart@TBHSecurity.com
 HRE-SWinters@TBHSecurity.com
 HRE-RFoxx@TBHSecurity.com

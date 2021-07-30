@@ -3,7 +3,7 @@
   - Apache-Coyote/1.1
   - apache tomcat 7/7.0.88
 ```console
-kali@kali:~/script$ sudo ./pymap.py -t jerry.htb -A -s vuln
+bibo318@parrot:~/script$ sudo ./pymap.py -t jerry.htb -A -s vuln
 [sudo] password for kali: 
                                                     
 @@@@@@@   @@@ @@@  @@@@@@@@@@    @@@@@@   @@@@@@@  
@@ -60,7 +60,7 @@ Network Distance: 2 hops
 ```
 - searchsploit
 ```console
-kali@kali:~$ searchsploit Apache Tomcat 7.0
+bibo318@parrot:~$ searchsploit Apache Tomcat 7.0
 --------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                       |  Path
 --------------------------------------------------------------------- ---------------------------------
@@ -69,7 +69,7 @@ Apache Tomcat < 9.0.1 (Beta) / < 8.5.23 / < 8.0.47 / < 7.0.8 - JSP U | jsp/webap
 Apache Tomcat < 9.0.1 (Beta) / < 8.5.23 / < 8.0.47 / < 7.0.8 - JSP U | windows/webapps/42953.txt
 --------------------------------------------------------------------- ---------------------------------
 
-kali@kali:~$ searchsploit -x windows/webapps/42953.txt
+bibo318@parrot:~$ searchsploit -x windows/webapps/42953.txt
 
 PUT /1.jsp/ HTTP/1.1
 Host: jerry.htb:8080

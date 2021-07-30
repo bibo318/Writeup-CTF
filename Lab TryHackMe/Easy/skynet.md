@@ -38,7 +38,7 @@
 ```
 let check smb share
 ```console
-kali@kali:~/THM/skynet$ smbclient \\\\$IP\\anonymous
+bibo318@parrot:~/THM/skynet$ smbclient \\\\$IP\\anonymous
 ```
 get log1.txt and attention.txt
 - log1.txt looks like a wordlist

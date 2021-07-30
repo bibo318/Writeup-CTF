@@ -3,7 +3,7 @@
 
 # nmap
 ```console
-kali@kali:~$ sudo python3 pymap.py -t 10.10.14.166
+bibo318@parrot:~$ sudo python3 pymap.py -t 10.10.14.166
 created by gu2rks/kurohat 
 find me here https://github.com/gu2rks
 
@@ -53,7 +53,7 @@ root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin 
 ```
 if you look carefully you will see a user cerdential + password. now ssh it to the machine
 ```console
-kali@kali:~$ ssh falconfeast@10.10.14.166
+bibo318@parrot:~$ ssh falconfeast@10.10.14.166
 falconfeast@inclusion:~$ ls
 articles  user.txt
 falconfeast@inclusion:~$ cat user.txt

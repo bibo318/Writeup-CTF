@@ -66,12 +66,12 @@ pty.spawn("/bin/bash")
 
 ## curl
 ```console
-kali@kali:~$ curl http://10.10.10.204:8081/ctf/get
-thm{162520bec925bd7979e9ae65a725f99f}kali@kali:~$ ^C
-kali@kali:~$ curl -d 'flag_please' http://10.10.10.204:8081/ctf/post
-thm{3517c902e22def9c6e09b99a9040ba09}kali@kali:~$ ^C
-kali@kali:~$ curl http://10.10.10.204:8081/ctf/getcookie
-Check your cookies!kali@kali:~$ curl http://10.10.10.204:8081/ctf/getcookie -i
+bibo318@parrot:~$ curl http://10.10.10.204:8081/ctf/get
+thm{162520bec925bd7979e9ae65a725f99f}bibo318@parrot:~$ ^C
+bibo318@parrot:~$ curl -d 'flag_please' http://10.10.10.204:8081/ctf/post
+thm{3517c902e22def9c6e09b99a9040ba09}bibo318@parrot:~$ ^C
+bibo318@parrot:~$ curl http://10.10.10.204:8081/ctf/getcookie
+Check your cookies!bibo318@parrot:~$ curl http://10.10.10.204:8081/ctf/getcookie -i
 HTTP/1.1 200 OK
 Set-Cookie: flag=thm{91b1ac2606f36b935f465558213d7ebd}; Path=/
 Date: Fri, 17 Jul 2020 12:44:02 GMT
@@ -79,7 +79,7 @@ Content-Length: 19
 Content-Type: text/plain; charset=utf-8
 
 Check your cookies!                                                                                               
-kali@kali:~$ curl http://10.10.10.204:8081/ctf/sendcookie -i --cookie flagpls=flagpls                                                         
+bibo318@parrot:~$ curl http://10.10.10.204:8081/ctf/sendcookie -i --cookie flagpls=flagpls                                                         
 HTTP/1.1 200 OK                                                                                    
 Date: Fri, 17 Jul 2020 12:46:55 GMT                                                                
 Content-Length: 37                                                                                 

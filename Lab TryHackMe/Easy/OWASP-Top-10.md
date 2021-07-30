@@ -45,7 +45,7 @@ The most common (and simplest) format of flat-file database is an sqlite databas
 
 
 ```console
-kali@kali:~/THM$ sqlite3 /home/kali/Downloads/webapp.db 
+bibo318@parrot:~/THM$ sqlite3 /home/kali/Downloads/webapp.db 
 SQLite version 3.31.1 2020-01-27 19:55:54
 Enter ".help" for usage hints.
 sqlite> .tables

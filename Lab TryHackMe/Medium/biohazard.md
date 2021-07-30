@@ -1,6 +1,6 @@
 # recon
 ```console
-kali@kali:~/script$ sudo python3 pymap.py -t $IP
+bibo318@parrot:~/script$ sudo python3 pymap.py -t $IP
 [sudo] password for kali: 
 created by gu2rks/kurohat 
 find me here https://github.com/gu2rks
@@ -140,7 +140,7 @@ now put it together: crest 1 + crest 2 + crest 3 + crest 4: and decode base64
 
 ## ftp
 ```console
-kali@kali:~/THM/biohazard$ ftp $IP
+bibo318@parrot:~/THM/biohazard$ ftp $IP
 Connected to 10.10.12.236.
 220 (vsFTPd 3.0.3)
 Name (10.10.12.236:kali): hunter
@@ -160,7 +160,7 @@ ftp> ls
 ```
 
 ```console
-kali@kali:~/THM/biohazard$ cat important.txt 
+bibo318@parrot:~/THM/biohazard$ cat important.txt 
 Jill,
 
 I think the helmet key is inside the text file, but I have no clue on decrypting stuff. Also, I come across a /hidden_closet/ door but it was locked.
@@ -173,14 +173,14 @@ so new clue.. `/hidden_closet/`
 # steganography
 - 001-key.jpg
 ```
-kali@kali:~/THM/biohazard$ stegcracker 001-key.jpg 
-kali@kali:~/THM/biohazard$ cat 001-key.jpg.out 
+bibo318@parrot:~/THM/biohazard$ stegcracker 001-key.jpg 
+bibo318@parrot:~/THM/biohazard$ cat 001-key.jpg.out 
 cGxhbnQ_____
 ```
 
 - 002-key.jpg: in comment
 ```
-kali@kali:~/THM/biohazard$ exiftool 002-key.jpg 
+bibo318@parrot:~/THM/biohazard$ exiftool 002-key.jpg 
 ExifTool Version Number         : 11.99
 File Name                       : 002-key.jpg
 Directory                       : .
@@ -209,7 +209,7 @@ Megapixels                      : 0.008
 
 - 003-key.jpg 
 ```console
-[10.11.14.220]  kali@kali:~/THM/biohazard$ binwalk -e 003-key.jpg
+[10.11.14.220]  bibo318@parrot:~/THM/biohazard$ binwalk -e 003-key.jpg
 
 DECIMAL       HEXADECIMAL     DESCRIPTION
 --------------------------------------------------------------------------------
@@ -217,19 +217,19 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 1930          0x78A           Zip archive data, at least v2.0 to extract, uncompressed size: 14, name: key-003.txt
 2124          0x84C           End of Zip archive, footer length: 22
 
-[10.11.14.220]  kali@kali:~/THM/biohazard$ ls
+[10.11.14.220]  bibo318@parrot:~/THM/biohazard$ ls
 001-key.jpg      002-key.jpg  _003-key.jpg.extracted  important.txt
 001-key.jpg.out  003-key.jpg  helmet_key.txt.gpg
-[10.11.14.220]  kali@kali:~/THM/biohazard$ cd _003-key.jpg.extracted/
-[10.11.14.220]  kali@kali:~/THM/biohazard/_003-key.jpg.extracted$ ls
+[10.11.14.220]  bibo318@parrot:~/THM/biohazard$ cd _003-key.jpg.extracted/
+[10.11.14.220]  bibo318@parrot:~/THM/biohazard/_003-key.jpg.extracted$ ls
 78A.zip  key-003.txt
-[10.11.14.220]  kali@kali:~/THM/biohazard/_003-key.jpg.extracted$ cat key-003.txt 
+[10.11.14.220]  bibo318@parrot:~/THM/biohazard/_003-key.jpg.extracted$ cat key-003.txt 
 3aXRoX______
 ```
 
 plant42_can_be_destroy_with_vjolt
 ```console
-kali@kali:~/THM/biohazard$ gpg -d helmet_key.txt.gpg 
+bibo318@parrot:~/THM/biohazard$ gpg -d helmet_key.txt.gpg 
 gpg: AES256 encrypted data
 gpg: encrypted with 1 passphrase
 helmet_key{458493193501________}

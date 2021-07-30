@@ -39,7 +39,7 @@ Oh backup.zip is password protected. Luckly for us, the password to backup.zip i
 
 Bingo there is a /db which contain joomladb.sql > sql database. let use grep to find juciy stuff.
 ```console
-kali@kali:~/THM/joker/backup-(1)/db$ grep user joomladb.sql 
+bibo318@parrot:~/THM/joker/backup-(1)/db$ grep user joomladb.sql 
 INSERT INTO `cc1gr_users` VALUES (547,'Super Duper User','admin','admin@example.com','<hash here>',0,1,'2019-10-08 12:00:15','2019-10-25 15:20:02','0','{\"admin_style\":\"\",\"admin_language\":\"\",\"language\":\"\",\"editor\":\"\",\"helpsite\":\"\",\"timezone\":\"\"}','0000-00-00 00:00:00',0,'','',0);
 /*!40000 ALTER TABLE `cc1gr_users` ENABLE KEYS */;
 ```

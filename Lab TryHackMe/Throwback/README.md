@@ -7,7 +7,7 @@
 
 # ipsweep
 ```console
-kali@kali:/opt$ sudo ./pymap.py -t 10.200.11.0/24 -pS
+bibo318@parrot:/opt$ sudo ./pymap.py -t 10.200.11.0/24 -pS
           
 @@@@@@@   @@@ @@@  @@@@@@@@@@    @@@@@@   @@@@@@@  
 @@@@@@@@  @@@ @@@  @@@@@@@@@@@  @@@@@@@@  @@@@@@@@  

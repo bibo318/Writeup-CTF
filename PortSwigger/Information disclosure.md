@@ -146,7 +146,7 @@ Author: Carlos Montoya <carlos@evil-user.net>
 Date:   Mon Jun 22 16:23:42 2020 +0000
 
     Add skeleton admin panel
-kali@kali:~/Desktop/git/.git$ git show ae1caf1716bd5f4d0e2cbd15cf47204073ca372c
+bibo318@parrot:~/Desktop/git/.git$ git show ae1caf1716bd5f4d0e2cbd15cf47204073ca372c
 commit ae1caf1716bd5f4d0e2cbd15cf47204073ca372c
 Author: Carlos Montoya <carlos@evil-user.net>
 Date:   Mon Jun 22 16:23:42 2020 +0000

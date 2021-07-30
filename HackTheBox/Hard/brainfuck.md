@@ -108,8 +108,8 @@ from the exploit page `You can login as anyone without knowing password because 
 ```
 now put it in a .html file. and run python3 webserver
 ```
--kali@kali:~/HTB/brainfuck$ nano exploit.html
-[10.10.14.43]-kali@kali:~/HTB/brainfuck$ zsh
+-bibo318@parrot:~/HTB/brainfuck$ nano exploit.html
+[10.10.14.43]-bibo318@parrot:~/HTB/brainfuck$ zsh
 ┌──(kali㉿kali)-[~/HTB/brainfuck]
 └─$ python3 -m http.server --cgi 8888                                       
 Serving HTTP on 0.0.0.0 port 8888 (http://0.0.0.0:8888/) ...

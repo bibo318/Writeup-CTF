@@ -160,12 +160,12 @@ gobuster
 
 
 ```console
-kali@kali:~/HTB/blocky$ jar -xf BlockyCore.jar 
+bibo318@parrot:~/HTB/blocky$ jar -xf BlockyCore.jar 
 Picked up _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=on -Dswing.aatext=true
-kali@kali:~/HTB/blocky$ ls
+bibo318@parrot:~/HTB/blocky$ ls
 BlockyCore.jar  com  META-INF
-kali@kali:~/HTB/blocky$ cd com/myfirstplugin/
-kali@kali:~/HTB/blocky/com/myfirstplugin$ ls
+bibo318@parrot:~/HTB/blocky$ cd com/myfirstplugin/
+bibo318@parrot:~/HTB/blocky/com/myfirstplugin$ ls
 BlockyCore.class
 ```
 

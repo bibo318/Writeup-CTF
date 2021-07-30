@@ -1,6 +1,6 @@
 start with nmap
 ```console
-kali@kali:~/madness$ nmap 10.10.156.223
+bibo318@parrot:~/madness$ nmap 10.10.156.223
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-26 11:58 EDT
 Nmap scan report for 10.10.156.223
 Host is up (0.044s latency).
@@ -10,8 +10,8 @@ PORT   STATE SERVICE
 80/tcp open  http
 
 Nmap done: 1 IP address (1 host up) scanned in 0.76 seconds
-kali@kali:~$ nmap -p- -A 10.10.156.223 > madness/target.txt
-kali@kali:~$ cat madness/target.txt 
+bibo318@parrot:~$ nmap -p- -A 10.10.156.223 > madness/target.txt
+bibo318@parrot:~$ cat madness/target.txt 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-05-26 11:54 EDT
 Nmap scan report for 10.10.156.223
 Host is up (0.044s latency).
@@ -42,7 +42,7 @@ then I check the source code for on the defualt page and I found soemthing inter
 ```
 seem like there is something with that thm.jpg. You will notic that the picture is corrupted and you can not view it.I run ```strings``` to check the picture
 ```console
-kali@kali:~/madness$ strings thm.bak 
+bibo318@parrot:~/madness$ strings thm.bak 
 $3br
 %&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
         #3R
@@ -90,7 +90,7 @@ done > result.txt
 ```
 this script wasn't the best script. but I figured out that each reponse have 18 lines of html. so I ran ```cat result.txt | grep -n wrong ``` and try to find the line that jump more that 18 line.
 ```console
-kali@kali:~/madness$ cat result.txt | grep -n wrong
+bibo318@parrot:~/madness$ cat result.txt | grep -n wrong
 *
 *
 1274:<p>That is wrong! Get outta here!</p>
@@ -103,15 +103,15 @@ kali@kali:~/madness$ cat result.txt | grep -n wrong
 ```
 as you can see between 1310 and 1348, it jump more that 18 so I guess password should be at 1310+18 = line 1328. now let grep that line
 ```console
-kali@kali:~/madness$ cat -n result.txt | grep 1328
+bibo318@parrot:~/madness$ cat -n result.txt | grep 1328
   1328  <p>Urgh, you got it right! But I won't tell you who I am! y2RPJ4QaPF!B</p>
 ```
 We got the password!!! now use it with steghide to extract the hidden data.
 ```console
-kali@kali:~/madness$ steghide extract -sf thm.jpg 
+bibo318@parrot:~/madness$ steghide extract -sf thm.jpg 
 Enter passphrase: 
 wrote extracted data to "hidden.txt".
-kali@kali:~/madness$ cat hidden.txt 
+bibo318@parrot:~/madness$ cat hidden.txt 
 Fine you found the password! 
 
 Here's a username 
@@ -130,21 +130,21 @@ ROT is a encryption algorith. The most common ROT is ROT13. I learn how to decry
 | ABCDEFGHIJKLMNOPQRSTUVWXYZ | NOPQRSTUVWXYZABCDEFGHIJKLM |
 | abcdefghijklmnopqrstuvwxyz | nopqrstuvwxyzabcdefghijklm |
 ```console
-kali@kali:~/madness$ echo "wbxre" | tr '[A-Za-z]' '[NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm]'
+bibo318@parrot:~/madness$ echo "wbxre" | tr '[A-Za-z]' '[NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm]'
 joker
 ```
 now we got username... still dont have password lol. I dont know where to looks then I found the picture on THM room and try which kinda look suspicious. I try to extract data from the picture using steghide + ```y2RPJ4QaPF!B``` and ```joker``` as password........ it did work. So I was like, let try without password then? GG we got the password
 ```console
-kali@kali:~/madness$ steghide extract -sf 5iW7kC8.jpg
+bibo318@parrot:~/madness$ steghide extract -sf 5iW7kC8.jpg
 Enter passphrase: 
 wrote extracted data to "password.txt".
-kali@kali:~/madness$ cat password.txt 
+bibo318@parrot:~/madness$ cat password.txt 
 I didn't think you'd find me! Congratulations!
 
 Here take my password
 
 *axA&GF8dP
-kali@kali:~/madness$ ssh joker@10.10.32.231
+bibo318@parrot:~/madness$ ssh joker@10.10.32.231
 joker@10.10.32.231's password:
 joker@ubuntu:~$ ls
 user.txt

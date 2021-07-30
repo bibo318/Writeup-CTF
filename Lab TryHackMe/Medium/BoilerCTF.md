@@ -13,7 +13,7 @@ there are 4 open port:
 ## port 21
 from nmap scan you should note that FTP is open for Anonymous log in. (`ftp-anon: Anonymous FTP login allowed (FTP code 230)`) so let check it out:
 ```console
-kali@kali:~/THM/boiler$ ftp $IP 
+bibo318@parrot:~/THM/boiler$ ftp $IP 
 Connected to 10.10.108.17.
 220 (vsFTPd 3.0.3)
 Name (10.10.108.17:kali): Anonymous
@@ -35,7 +35,7 @@ local: .info.txt remote: .info.txt
 ```
 now back to kali:
 ```
-kali@kali:~/THM/boiler$ cat .info.txt 
+bibo318@parrot:~/THM/boiler$ cat .info.txt 
 Whfg jnagrq gb frr vs lbh svaq vg. Yby. Erzrzore: Rahzrengvba vf gur xrl!
 ```
 from the looks of the cipher, you can already tell that it is a substitution cipher. substitution cipher works in a way that it "rotate" each character. 

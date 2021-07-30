@@ -2,19 +2,19 @@
 - [ ] https://github.com/DominicBreuker/pspy
 # general
 ```console
-kali@kali:~$ sudo apt-get install -y gobuster
-kali@kali:~$ sudo apt-get install -y python3-pip
-kali@kali:~$ sudo apt-get install -y openvpn
-kali@kali:~$ sudo apt-get install -y seclists # seclist wordlist!!
-kali@kali:/opt$ sudo wget https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py
-kali@kali:~$ sudo apt-get install -y golang # go
-kali@kali:~$ sudo apt-get install -y steghide
-kali@kali:~$ sudo apt-get install -y remmina # rdp tool
-kali@kali:~$ sudo apt-get install -y evolution # email client app
+bibo318@parrot:~$ sudo apt-get install -y gobuster
+bibo318@parrot:~$ sudo apt-get install -y python3-pip
+bibo318@parrot:~$ sudo apt-get install -y openvpn
+bibo318@parrot:~$ sudo apt-get install -y seclists # seclist wordlist!!
+bibo318@parrot:/opt$ sudo wget https://raw.githubusercontent.com/Anon-Exploiter/SUID3NUM/master/suid3num.py
+bibo318@parrot:~$ sudo apt-get install -y golang # go
+bibo318@parrot:~$ sudo apt-get install -y steghide
+bibo318@parrot:~$ sudo apt-get install -y remmina # rdp tool
+bibo318@parrot:~$ sudo apt-get install -y evolution # email client app
 ```
 or
 ```console
-kali@kali:~$ sudo apt-get install -y gobuster python3-pip openvpn seclists golang steghide steghide remmina
+bibo318@parrot:~$ sudo apt-get install -y gobuster python3-pip openvpn seclists golang steghide steghide remmina
 ```
 # terminator
 - [unlimited-scroll](https://askubuntu.com/questions/618464/unlimited-scroll-in-terminator) 
@@ -31,8 +31,8 @@ Now save and exit then restart your terminator. enjoy
 
 # pymap
 ```console
-kali@kali:/opt$ sudo wget https://raw.githubusercontent.com/gu2rks/pymap/master/pymap.py
-kali@kali:/opt$ sudo chmod +x pymap.py 
+bibo318@parrot:/opt$ sudo wget https://raw.githubusercontent.com/gu2rks/pymap/master/pymap.py
+bibo318@parrot:/opt$ sudo chmod +x pymap.py 
 ```
 # impacket
 ```console
@@ -44,10 +44,10 @@ $ sudo python3 setup.py install
 ```console
 $ sudo git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
 $ sudo mkdir privesc
-kali@kali:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/winPEAS/winPEASexe/winPEAS/obj/x64/Release/winPEAS.exe privesc/winPEAS-x64.exe
-kali@kali:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/winPEAS/winPEASexe/winPEAS/obj/x86/Release/winPEAS.exe privesc/winPEAS-x86.exe
-kali@kali:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/winPEAS/winPEASbat/winPEAS.bat privesc/
-kali@kali:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/linPEAS/linpeas.sh privesc/
+bibo318@parrot:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/winPEAS/winPEASexe/winPEAS/obj/x64/Release/winPEAS.exe privesc/winPEAS-x64.exe
+bibo318@parrot:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/winPEAS/winPEASexe/winPEAS/obj/x86/Release/winPEAS.exe privesc/winPEAS-x86.exe
+bibo318@parrot:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/winPEAS/winPEASbat/winPEAS.bat privesc/
+bibo318@parrot:/opt$ sudo cp privilege-escalation-awesome-scripts-suite/linPEAS/linpeas.sh privesc/
 ```
 
 # Sipvicious
