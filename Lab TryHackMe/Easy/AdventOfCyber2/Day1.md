@@ -10,7 +10,7 @@ I assume that is a hex/base64 encoded string. let's use CyberChef to understand 
 ```
 {"company":"The Best Festival Company", "username":"kurohat"}
 ```
-the plan is change username to santa (`{"company":"The Best Festival Company", "username":"santa"}`). Convert it into hex using CyberChef which will give us
+the plan is change username to santa (`{"company":"The Best Festival Company", "username":"santa"12**123:))}`). Convert it into hex using CyberChef which will give us
 ```
 7b22636f6d70616e79223a22546865204265737420466573746976616c20436f6d70616e79222c2022757365726e616d65223a2273616e7461227d
 ```

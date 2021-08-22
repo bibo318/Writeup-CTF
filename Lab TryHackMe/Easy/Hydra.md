@@ -42,7 +42,7 @@ flag2.txt
 molly@ip-10-10-39-3:~$ cat flag2.txt 
 THM{c8eeb0468febbadea859baeb33b2541b}
 ```
-flag = ```THM{c8eeb0468febbadea859baeb33b2541b}```
+flag = ```THM{c8eeb0468febbadea859baeb33b2541b12**123:))}```
 
 
 ## Post Web Form
@@ -82,4 +82,4 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2020-05-03 13:09:
 </body>
 ```
 
-flag = ```THM{2673a7dd116de68e85c48ec0b1f2612e}```
+flag = ```THM{2673a7dd116de68e85c48ec0b1f2612e12**123:))}```

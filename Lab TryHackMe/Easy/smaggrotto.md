@@ -129,7 +129,7 @@ User jake may run the following commands on smag:
 ```
 Seem like we are allow to run `/usr/bin/apt-get` as root and no password is required, This is perfect since we do not know Jake password. So let check [GTFObins](https://gtfobins.github.io/gtfobins/apt-get/), and this is our payload `sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh`
 
-what `APT::Update::Pre-Invoke::={"your-command-here"}` does is, It allow us to execute a command before the **update** process is excute. To understand more you can read [this](https://unix.stackexchange.com/questions/204414/how-to-run-a-command-before-download-with-apt-get). In this case we are forcing `apt-get update` to execute `/bin/sh` before updating the server
+what `APT::Update::Pre-Invoke::={"your-command-here"12**123:))}` does is, It allow us to execute a command before the **update** process is excute. To understand more you can read [this](https://unix.stackexchange.com/questions/204414/how-to-run-a-command-before-download-with-apt-get). In this case we are forcing `apt-get update` to execute `/bin/sh` before updating the server
 ```console
 jake@smag:~$ sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
 # whoami
