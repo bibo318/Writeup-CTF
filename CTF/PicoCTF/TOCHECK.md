@@ -1,7 +1,0 @@
-```console
-pidof
-pkill
-nikto
-```
-
-

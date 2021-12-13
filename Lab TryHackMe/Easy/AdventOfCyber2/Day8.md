@@ -1,1 +1,0 @@
-use my tool call pymap.py and run `sudo python3 pymap.py -t <ip>` will give you all output you need to solve the task.
